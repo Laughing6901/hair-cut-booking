@@ -1,0 +1,16 @@
+{
+    "development": {
+        "username": "root",
+        "password": "",
+        "database": "datn-51",
+        "host": "localhost",
+        "dialect": "mysql",
+        "logging": false,
+        "pool": {
+          "max": 5,
+          "min": 0,
+          "acquire": 300000,
+          "idle": 10000
+        }
+    }
+}
