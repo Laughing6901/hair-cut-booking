@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface breadCrumb {
     tab: string
 }
 
-export const PageHeaders: React.FC<breadCrumb> =({tab}) => {
+export const BreadCrumb: React.FC<breadCrumb> =({tab}) => {
     return(
         <div className="page-header">
             <div className="container">
@@ -13,8 +14,8 @@ export const PageHeaders: React.FC<breadCrumb> =({tab}) => {
                         <h2>{tab}</h2>
                     </div>
                     <div className="col-12">
-                        <a href="">Home</a>
-                        <a href="">{tab}</a>
+                        <Link to ="/">Home</Link>
+                        <Link to ="">{tab}</Link>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 export const Header:React.FC = () => {
     return(
@@ -37,27 +38,21 @@ export const Header:React.FC = () => {
         {/* Nav Bar start */}
         <div className="navbar navbar-expand-lg bg-dark navbar-dark">
             <div className="container-fluid">
-                <a href="index.html" className="navbar-brand">Barber <span>X</span></a>
+                <Link to="/" className="navbar-brand">Barber <span>X</span></Link>
                 <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
                 <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div className="navbar-nav ml-auto">
-                        <a href="index.html" className="nav-item nav-link active">Home</a>
-                        <a href="about.html" className="nav-item nav-link">About</a>
-                        <a href="service.html" className="nav-item nav-link">Service</a>
-                        <a href="price.html" className="nav-item nav-link">Price</a>
-                        <a href="team.html" className="nav-item nav-link">Barber</a>
-                        <a href="portfolio.html" className="nav-item nav-link">Gallery</a>
-                        <div className="nav-item dropdown">
-                            <a href="#" className="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                            <div className="dropdown-menu">
-                                <a href="blog.html" className="dropdown-item">Blog Page</a>
-                                <a href="single.html" className="dropdown-item">Single Page</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" className="nav-item nav-link">Contact</a>
+                        <Link to="/" className="nav-item nav-link active">Home</Link>
+                        <Link to="/about" className="nav-item nav-link">About</Link>
+                        <Link to="/service" className="nav-item nav-link">Service</Link>
+                        <Link to="/price" className="nav-item nav-link">Price</Link>
+                        <Link to="/barber" className="nav-item nav-link">Barber</Link>
+                        <Link to="/gallery" className="nav-item nav-link">Gallery</Link>
+                        <Link to="/blog" className="nav-item nav-link">Blog Page</Link>
+                        <Link to="/contact" className="nav-item nav-link">Contact</Link>
                     </div>
                 </div>
             </div>

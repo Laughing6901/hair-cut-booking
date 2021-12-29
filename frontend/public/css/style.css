@@ -5,6 +5,7 @@ body {
     color: #797979;
     background: #ffffff;
     font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
 }
 
 h1,
@@ -105,7 +106,7 @@ a:focus {
 
 .top-bar .text h2 {
     color: #eeeeee;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 16px;
     letter-spacing: 1px;
     margin: 0;
@@ -114,7 +115,7 @@ a:focus {
 .top-bar .text p {
     color: #eeeeee;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 600;
     margin: 0;
 }
 
