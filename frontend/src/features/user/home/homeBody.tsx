@@ -1,6 +1,6 @@
 import React from "react";
 
-export const HomePageBody = () => {
+export const HomePageBody: React.FC = () => {
     return (
         <div className="hero">
             <div className="container-fluid">

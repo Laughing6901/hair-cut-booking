@@ -1,8 +1,9 @@
 import React from "react";
 
-export const Header = () => {
+export const Header:React.FC = () => {
     return(
         <>
+        {/* Top Bar Start */}
         <div className="top-bar d-none d-md-block">
             <div className="container-fluid">
                 <div className="row">
@@ -31,7 +32,9 @@ export const Header = () => {
                 </div>
             </div>
         </div>
+        {/* Top Bar End */}
 
+        {/* Nav Bar start */}
         <div className="navbar navbar-expand-lg bg-dark navbar-dark">
             <div className="container-fluid">
                 <a href="index.html" className="navbar-brand">Barber <span>X</span></a>
@@ -59,6 +62,7 @@ export const Header = () => {
                 </div>
             </div>
         </div>
+        {/* Nar bar end */}
         </>
     )
 }

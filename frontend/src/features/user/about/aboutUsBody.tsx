@@ -1,6 +1,6 @@
 import React from "react";
 
-export const AboutUsBody = () => {
+export const AboutUsBody:React.FC = () => {
     return(
         <div className="about">
             <div className="container">

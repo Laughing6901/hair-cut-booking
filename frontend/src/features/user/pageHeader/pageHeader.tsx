@@ -1,7 +1,10 @@
 import React from "react";
 
-export const PageHeaders =(props) => {
-    const {tab} = props;
+interface breadCrumb {
+    tab: string
+}
+
+export const PageHeaders: React.FC<breadCrumb> =({tab}) => {
     return(
         <div className="page-header">
             <div className="container">
