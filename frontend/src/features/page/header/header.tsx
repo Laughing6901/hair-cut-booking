@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { useAppSelector } from "../../../app/hooks";
+import { headerArr } from "../page-dto";
+import { selectPageState } from "../pageSlice";
 
 export const Header:React.FC = () => {
+    const HeaderTitle:string[] = headerArr;
+    const tab = useAppSelector(selectPageState).tab;
+    
     return(
         <>
         {/* Top Bar Start */}
@@ -45,14 +51,12 @@ export const Header:React.FC = () => {
 
                 <div className="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div className="navbar-nav ml-auto">
-                        <Link to="/" className="nav-item nav-link active">Home</Link>
-                        <Link to="/about" className="nav-item nav-link">About</Link>
-                        <Link to="/service" className="nav-item nav-link">Service</Link>
-                        <Link to="/price" className="nav-item nav-link">Price</Link>
-                        <Link to="/barber" className="nav-item nav-link">Barber</Link>
-                        <Link to="/gallery" className="nav-item nav-link">Gallery</Link>
-                        <Link to="/blog" className="nav-item nav-link">Blog Page</Link>
-                        <Link to="/contact" className="nav-item nav-link">Contact</Link>
+                        {HeaderTitle.map((item, index) => {
+                            return(
+                                <Link key={index}className= {item === tab ? "nav-item nav-link active" : "nav-item nav-link"} to = {index === 0? `/` : `/${item.split(" ")[0].toLowerCase()}`}>{item}</Link>
+                            )
+                        } 
+                        )}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,10 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import pageReducer from '../features/page/pageSlice';
 
 export const store = configureStore({
   reducer: {
+    pageState: pageReducer,
+    
   },
 });
 

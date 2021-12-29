@@ -6,7 +6,7 @@ import { AboutUsBody } from "./aboutUsBody";
 export const AboutUs:React.FC = () => {
     return(
         <>
-            <BreadCrumb tab = "About Us"/>
+            <BreadCrumb tab = "About"/>
             <AboutUsBody/>
         </>
     )

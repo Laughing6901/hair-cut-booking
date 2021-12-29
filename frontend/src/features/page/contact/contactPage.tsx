@@ -5,7 +5,7 @@ import { ContactBody } from "./contactBody";
 export const ContactPage: React.FC = () => {
     return (
         <>
-            <BreadCrumb tab="contact" />
+            <BreadCrumb tab="Contact" />
             <ContactBody />
         </>
     )

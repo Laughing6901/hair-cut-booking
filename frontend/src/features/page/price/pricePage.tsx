@@ -5,7 +5,7 @@ import { PriceBody } from "./priceBody";
 export const PricePage: React.FC = () => {
     return (
         <>
-            <BreadCrumb tab = "About Us"/>
+            <BreadCrumb tab = "Price"/>
             <PriceBody/>
         </>
     )
