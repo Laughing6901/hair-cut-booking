@@ -2,7 +2,7 @@
     "development": {
         "username": "root",
         "password": "",
-        "database": "datn-51",
+        "database": "datn51",
         "host": "localhost",
         "dialect": "mysql",
         "logging": false,
