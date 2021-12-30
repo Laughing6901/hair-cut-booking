@@ -1,12 +1,7 @@
 import axios from 'axios';
-import * as dotenv from 'dotenv';
-
-dotenv.config()
-
-export const {REACT_APP_SERVER_URL} = process.env;
 
 const axiosClient = axios.create({
-    baseURL: "localhost: 8000",
+    baseURL: "http://localhost:8000/",
     headers: {
         'content-type': 'application/json',
     },
@@ -23,18 +18,19 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(async (config) => {
     // Handle token here ...
     const token:any = sessionStorage.getItem("token");
-    // if(token !== null){
-    //     if(decodeToken.checkExpToken(token) === false) {
-    //         config.headers = {
-    //             Authorization: 'Bearer ' + sessionStorage.getItem("token"),
-    //         }
-    //     }
-    // }
+    if(token !== null){
+        // if(decodeToken.checkExpToken(token) === false) {
+            config.headers = {
+                Authorization: 'Bearer ' + sessionStorage.getItem("token"),
+            }
+        // }
+    }
     return config;
 });
 
 //Handle response infomation
 axiosClient.interceptors.response.use((response) => {
+    console.log(response);
     if (response && response.data) {
         return response.data;
     }

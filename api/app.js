@@ -16,7 +16,7 @@ const { sequelize } = require("./models");
 sequelize.sync();
 
 var corsOptions = {
-  origin: "http://localhost:3001",
+  origin: "http://localhost:3000",
 };
 
 global.__basedir = __dirname;

@@ -6,7 +6,6 @@ import { loginInfo, loginState } from "./login-dto";
 const initialState: loginState = {
     state: 'idle',
     errMsg: '',
-    token: '',
 }
 
 export const loginFunction = createAsyncThunk(
@@ -43,7 +42,7 @@ export const loginSlice = createSlice({
         .addCase(loginFunction.fulfilled, (state, action: PayloadAction<any>) => {
             state.state = 'idle';
             //get token from data response from server
-            state.token = action.payload.Token.accessToken;
+            sessionStorage.setItem("token",action.payload.Token.accessToken);
         })
     }
 })

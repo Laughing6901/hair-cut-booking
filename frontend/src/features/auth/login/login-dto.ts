@@ -5,5 +5,4 @@ export type loginInfo = {
 export type loginState = {
     state: 'idle' | 'pending' | 'failed',
     errMsg: string,
-    token: string,
 }
