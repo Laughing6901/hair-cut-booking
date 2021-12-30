@@ -55,10 +55,10 @@ exports.getallpaging = function (searchViewModel) {
    
    
 //  Login
-exports.login = (account)=>{
-  return  models.users.findOne({where:{username:account.username}}).then( async(user)=>{
-      if(user){
-         const isMatch = await bcrypt.compare(account.password, user.password)
+exports.login = async (account)=>{
+   let user = await models.users.findOne({where:{username:account.username}});
+      if(user !== null){
+         const isMatch = await bcrypt.compare(account.password, user.password);
          if(isMatch){
             const payload={
                username: user.username,
@@ -71,19 +71,18 @@ exports.login = (account)=>{
             return {accessToken,refreshToken};
          }
          else{
-            return Promise.resolve({
+            return{
                status: 404,
                message: messageConstants.USER_PASS_INVALID,
-         });
+         };
       }
    }
       else{
-         return Promise.resolve({
+         return {
             status: 404,
             message: messageConstants.USER_USERNAME_NOT_EXIST,
-         });
+         };
        } 
-   });
 };
 
 // Find by Id

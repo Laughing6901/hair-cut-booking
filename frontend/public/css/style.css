@@ -1411,3 +1411,21 @@ a:focus {
         text-align: center;
     }
 }
+
+
+.login-btn {
+    background-color: #D5B981;
+    border: 2px solid #D5B981;
+    border-radius: 8px;
+    font-weight: bold;
+    padding-left: 12px;
+    padding-right: 12px;
+    color: #1d2434;
+}
+
+.login-btn:hover {
+    background-color: #1d2434;
+    color: #D5B981;
+    border: 2px solid #1d2434;
+    text-decoration: none;
+}

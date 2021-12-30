@@ -57,6 +57,7 @@ export const Header:React.FC = () => {
                             )
                         } 
                         )}
+                        <button className="login-btn nav-item"> Login</button>
                     </div>
                 </div>
             </div>

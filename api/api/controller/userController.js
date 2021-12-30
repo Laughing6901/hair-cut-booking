@@ -216,7 +216,7 @@ exports.restore =function(req,res){
 });
 };
 // Login
-exports.login=async(req,res,next)=>{
+exports.login = async(req,res,next)=>{
   try{
     const errors= validationResult(req);
     if(!errors.isEmpty()){
@@ -227,30 +227,21 @@ exports.login=async(req,res,next)=>{
       username: req.body.username,
       password: req.body.password
     };
-     userService.login(account).then(data=>{
-       if(data.accessToken,data.refreshToken){
+    let loginUserRes = await userService.login(account);
+       if(loginUserRes.accessToken,loginUserRes.refreshToken){
        res.status(200).json({
          success:true,
          message:messageConstants.USER_LOGIN_SUSSCESS,
          Account: account.username,
-         Token: data
+         Token: loginUserRes
         });
         // return res.cookie('t', data.accessToken, { expire: new Date() + 9999 });
       }
       else{
-        res.status(200).json({
-          Account: account.username,
-          message: data.message
+        res.status(loginUserRes.status).json({
+          message: loginUserRes.message
          });
       }
-    }).catch(err =>{
-      res.send({
-        error:{
-          status: err.status ||500,
-          message: err.message
-              },
-           })
-        })
  }catch(err){
     return next(err);
   };
