@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppDispatch } from "../../../app/hooks";
+import { LoadingScreen } from "../../loadingScreen";
 import { AboutUsBody } from "../about/aboutUsBody";
 import { BarberBody } from "../barber/barberBody";
 import { BlogBody } from "../blog/blog";

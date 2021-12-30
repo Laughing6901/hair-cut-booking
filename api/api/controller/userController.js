@@ -229,11 +229,12 @@ exports.login = async(req,res,next)=>{
     };
     let loginUserRes = await userService.login(account);
        if(loginUserRes.accessToken,loginUserRes.refreshToken){
+        const {fullname, ...token} = loginUserRes;
        res.status(200).json({
          success:true,
          message:messageConstants.USER_LOGIN_SUSSCESS,
-         Account: account.username,
-         Token: loginUserRes
+         Account: loginUserRes.fullname,
+         Token: token
         });
         // return res.cookie('t', data.accessToken, { expire: new Date() + 9999 });
       }

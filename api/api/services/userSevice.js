@@ -58,6 +58,7 @@ exports.getallpaging = function (searchViewModel) {
 exports.login = async (account)=>{
    let user = await models.users.findOne({where:{username:account.username}});
       if(user !== null){
+         const fullname = user.fullname;
          const isMatch = await bcrypt.compare(account.password, user.password);
          if(isMatch){
             const payload={
@@ -68,7 +69,7 @@ exports.login = async (account)=>{
                 payload,process.env.ACCESS_TOKEN_SECRET,{ expiresIn: '7m' });
             const refreshToken = jwt.sign( 
                 payload,process.env.REFRESH_TOKEN_SECRET,{ expiresIn: '7d' });
-            return {accessToken,refreshToken};
+            return {fullname,accessToken,refreshToken};
          }
          else{
             return{

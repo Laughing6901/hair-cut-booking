@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useAppSelector } from "../../../app/hooks";
+import { Login } from "../../auth/login/login";
 import { headerArr } from "../page-dto";
 import { selectPageState } from "../pageSlice";
 
@@ -57,7 +58,8 @@ export const Header:React.FC = () => {
                             )
                         } 
                         )}
-                        <button className="login-btn nav-item"> Login</button>
+                        <Login />
+                        
                     </div>
                 </div>
             </div>

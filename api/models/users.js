@@ -11,6 +11,9 @@ id: {
 username: {
   type: Sequelize.STRING(255)
 },
+fullname: {
+  type: Sequelize.STRING(255)
+},
 password: {
   type: Sequelize.STRING(255)
 },
