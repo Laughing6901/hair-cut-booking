@@ -78,25 +78,26 @@ exports.register =async(req,res,next) => {
       const user= {
         username: req.body.username,
         password:  req.body.password,
+        fullname: req.body.fullname,
         email: req.body.email,
         phone: req.body.phone,
         address: req.body.address,
         avatar: req.body.avatar,
         role: req.body.role,
-     }
-            userService.register(user).then(result=>{
-            if(result.message===null){
-            res.status(200).json({
-              success: true,
-             message: messageConstants.USER_CREATE_SUSSCESS,
-             User :result
+      }
+      userService.register(user).then(result=>{
+        if(result.message=== undefined){
+          res.status(200).json({
+            success: true,
+            message: messageConstants.USER_CREATE_SUSSCESS,
+            User :result
+            });
+        }else{
+          res.status(400).json({
+          message :result.message
         });
-      }else{
-          res.status(404).json({
-            message :result.message
-          });
-        }
-     }).catch(err =>{
+      }
+      }).catch(err =>{
         res.send({
           error:{
             status: err.status ||500,
