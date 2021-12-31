@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 module.exports = function(sequelize, DataTypes){
     var gallery = sequelize.define('gallerys', {
-        id: {
+        gallery_id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
@@ -16,9 +16,9 @@ module.exports = function(sequelize, DataTypes){
         description: {
             type: Sequelize.STRING(255)
         },
-        cate_id: {
-            type: Sequelize.INTEGER(4)
-        },
+        // cate_id: {
+        //     type: Sequelize.INTEGER(4)
+        // },
         status: {
             allowNull: false,
             type: Sequelize.INTEGER(2)

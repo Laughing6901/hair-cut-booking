@@ -2,7 +2,7 @@
 const { Sequelize,DataTypes } = require('sequelize');
 module.exports = function (sequelize, DataTypes) {
   var users = sequelize.define('users', {
-id: {
+user_id: {
   allowNull: false,
   autoIncrement: true,
   primaryKey: true,

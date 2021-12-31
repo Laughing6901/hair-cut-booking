@@ -19,7 +19,7 @@ exports.getAllpaging = (searchViewModel) => {
 
 //get-by-id
 exports.getByid = async (id) => {
-    return models.voucher.findOne({where: {id: id}});
+    return models.voucher.findOne({where: {voucher_id: id}});
 };
 
 
@@ -30,40 +30,40 @@ exports.create = async (voucher) => {
 
 //update
 exports.update = async (id, voucherUpdate) => {
-    const Id = await models.voucher.findOne({where: {id: id}});
+    const Id = await models.voucher.findOne({where: {voucher_id: id}});
     if(!Id){
         return Promise.resolve({
             messsage: messageConstants.VOUCHER_ID_NOT_FOUND
         });
     }else{
-        return models.voucher.update(voucherUpdate, {where: {id: id}});
+        return models.voucher.update(voucherUpdate, {where: {voucher_id: id}});
     }
 };
 
 //soft delete
 exports.delete = (id, options) => {
-    return models.voucher.update(options, { where: {id: id} });
+    return models.voucher.update(options, { where: {voucher_id: id} });
 };
 
 //restore
 exports.restore = (id, options) => {
-    return models.voucher.update(options, {where: {id:id}});
+    return models.voucher.update(options, {where: {voucher_id:id}});
 };
 
 
 /// API get detail information about gallery relating with categories 
 exports.getCate = () => {
-    models.categories.hasMany(models.voucher, {foreignKey: 'id'});
-    models.voucher.belongsTo(models.categories, {foreignKey: 'cate_id'});
+    // models.categories.hasMany(models.voucher, {foreignKey: 'id'});
+    // models.voucher.belongsTo(models.categories, {foreignKey: 'cate_id'});
     return models.voucher.findAll({
       where:{deleted: false},
     order: [
         ['created_date', 'DESC']
     ],
-    attributes:['id','name'],
+    attributes:['voucher_id','name'],
     include:[{
         model: models.categories,
-        attributes:['id','voucher_code','description_voucher']
+        attributes:['cate_id','voucher_code','description_voucher']
     }]
     //     include: [{
     //         models: models.service,
@@ -73,17 +73,17 @@ exports.getCate = () => {
 }
 
 exports.getUser = () => {
-    models.users.hasMany(models.voucher, {foreignKey: 'id'});
-    models.voucher.belongsTo(models.users, {foreignKey: 'user_id'});
+    // models.users.hasMany(models.voucher, {foreignKey: 'id'});
+    // models.voucher.belongsTo(models.users, {foreignKey: 'user_id'});
     return models.voucher.findAll({
       where:{deleted: false},
     order: [
         ['created_date', 'DESC']
     ],
-    attributes:['id','name'],
+    attributes:['voucher_id','name'],
     include:[{
         model: models.users,
-        attributes:['id','voucher_code','description_voucher']
+        attributes:['user_id','voucher_code','description_voucher']
     }]
     //     include: [{
     //         models: models.service,

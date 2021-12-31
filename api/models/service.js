@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 module.exports = function(sequelize, DataTypes){
     var service = sequelize.define('service', {
-        id: {
+        service_id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
@@ -19,9 +19,9 @@ module.exports = function(sequelize, DataTypes){
         description: {
             type: Sequelize.STRING(255)
         },
-        cate_id: {
-            type: Sequelize.INTEGER(4)
-        },
+        // cate_id: {
+        //     type: Sequelize.INTEGER(4)
+        // },
         status: {
             type: Sequelize.INTEGER(2),
             defaultValue: true

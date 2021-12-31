@@ -3,15 +3,15 @@ module.exports = function (sequelize, DataTypes) {
   var booking = sequelize.define(
     "bookings",
     {
-      id: {
+      booking_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER(4),
       },
-      user_id:{
-        type: Sequelize.INTEGER(4)
-      },
+      // user_id:{
+      //   type: Sequelize.INTEGER(4)
+      // },
       start_time: {
         type: Sequelize.DATE,
         allowNull: false,

@@ -1,17 +1,20 @@
 import { Field, Form, Formik } from 'formik';
-import React from "react";
+import React, { useRef } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { loginValidate } from "../validation/loginValidate";
-import { loginState } from "./login-dto";
+import { loginState, RefObject } from "./login-dto";
 import { loginFunction, selectLoginState } from "./loginSlice";
 
+
+
 export const Login: React.FC = () => {
+    const ref = useRef<RefObject>(null);
     const loginState: loginState = useAppSelector(selectLoginState);
     const dispatch = useAppDispatch();
     return (
-        <Popup trigger={<button className="login-btn nav-item"> Login </button>} modal>
+        <Popup ref={ref} trigger={<button className="login-btn nav-item"> Login </button>}  modal>
             <h1 className="text-center mb-4 mt-2 font-weight-bold text-white">Login</h1>
             <Formik
             initialValues={{
@@ -21,6 +24,7 @@ export const Login: React.FC = () => {
             validationSchema={loginValidate}
             onSubmit={values => {
                 console.log(values);
+                ref.current?.close();
                 dispatch(loginFunction(values));
             }}
             >

@@ -1,15 +1,15 @@
 const { Sequelize, DataTypes } = require('sequelize');
 module.exports = function(sequelize, DataTypes){
     var comment = sequelize.define('comment', {
-        id: {
+        comment_id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER(4)
         },
-        user_id: {
-            type: Sequelize.INTEGER(4)
-        },
+        // user_id: {
+        //     type: Sequelize.INTEGER(4)
+        // },
         content: {
             type: Sequelize.STRING(255)
         },

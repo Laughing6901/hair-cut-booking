@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 module.exports = function(sequelize, DataTypes){
     var blogs = sequelize.define('blogs', {
-        id: {
+        blog_id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,

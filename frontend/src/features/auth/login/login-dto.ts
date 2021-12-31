@@ -4,5 +4,11 @@ export type loginInfo = {
 }
 export type loginState = {
     state: 'idle' | 'pending' | 'failed',
-    errMsg: string,
+    msg: string,
+}
+
+export interface RefObject {
+    open: () => void,
+    close: () => void,
+    toggle: () => void,
 }

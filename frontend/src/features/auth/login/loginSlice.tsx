@@ -1,20 +1,22 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { authApi } from "../../../api/auth-api";
 import { RootState } from "../../../app/store";
+import { setAccount } from "../../user/userInfo";
 import { loginInfo, loginState } from "./login-dto";
 
 const initialState: loginState = {
     state: 'idle',
-    errMsg: '',
+    msg: '',
 }
 
 export const loginFunction = createAsyncThunk(
     'Login/loginFunc', async(params:loginInfo, thunkApi) => {
         const response: any = await authApi.login(params);
+        console.log(response);
         if (response.statusCode >300) {
             return thunkApi.rejectWithValue(response.message);
         }
-        // thunkApi.dispatch(setLoginInfo(params));
+        thunkApi.dispatch(setAccount(response.Account));
       // The value we return becomes the `fulfilled` action payload
       return response;
     }
@@ -36,12 +38,14 @@ export const loginSlice = createSlice({
         })
         .addCase(loginFunction.rejected, (state, action: PayloadAction<any>) => {
             state.state ='failed';
-            state.errMsg = action.payload;
-            window.alert(state.errMsg);
+            state.msg = action.payload;
+            window.alert(state.msg);
         })
         .addCase(loginFunction.fulfilled, (state, action: PayloadAction<any>) => {
             state.state = 'idle';
             //get token from data response from server
+            state.msg = action.payload.message;
+            window.alert(action.payload.message);
             sessionStorage.setItem("token",action.payload.Token.accessToken);
         })
     }

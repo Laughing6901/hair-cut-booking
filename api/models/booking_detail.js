@@ -1,18 +1,18 @@
 const { Sequelize, DataTypes } = require('sequelize');
 module.exports = function(sequelize, DataTypes){
     var booking_detail = sequelize.define('bookingdetail', {
-        id: {
+        booking_detail_id: {
             allowNull: false,
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER(4)
         },
-        booking_id: {
-            type: Sequelize.INTEGER(4)
-        },
-        service_id: {
-            type: Sequelize.INTEGER(4)
-        },
+        // booking_id: {
+        //     type: Sequelize.INTEGER(4)
+        // },
+        // service_id: {
+        //     type: Sequelize.INTEGER(4)
+        // },
         price: {
             type: Sequelize.STRING(99)
         },

@@ -19,7 +19,7 @@ exports.getAllpaging = (searchViewModel) => {
 
 //get-by-id
 exports.getByid = async (id) => {
-    return models.booking.findOne({where: {id: id}});
+    return models.booking.findOne({where: {booking_id: id}});
 };
 
 
@@ -30,24 +30,24 @@ exports.create = async (booking) => {
 
 //update
 exports.update = async (id, bookingUpdate) => {
-    const Id = await models.booking.findOne({where: {id: id}});
+    const Id = await models.booking.findOne({where: {booking_id: id}});
     if(!Id){
         return Promise.resolve({
             messsage: messageConstants.BOOKING_ID_NOT_FOUND
         });
     }else{
-        return models.booking.update(bookingUpdate, {where: {id: id}});
+        return models.booking.update(bookingUpdate, {where: {booking_id: id}});
     }
 };
 
 //soft delete
 exports.delete = (id, options) => {
-    return models.booking.update(options, { where: {id: id} });
+    return models.booking.update(options, { where: {booking_id: id} });
 };
 
 //restore
 exports.restore = (id, options) => {
-    return models.booking.update(options, {where: {id:id}});
+    return models.booking.update(options, {where: {booking_id:id}});
 };
 
 

@@ -277,7 +277,7 @@ a:focus {
     padding-left: 75px;
     height: calc(100vh - 60px);
     display: flex;
-    align-items: flex-start;
+    /* align-items: flex-start; */
     justify-content: center;
     flex-direction: column;
 }
@@ -1424,6 +1424,10 @@ a:focus {
     color: #1d2434;
 }
 
+.user-dropdown {
+    height: 100%;
+}
+
 .login-btn:hover {
     background-color: #1d2434;
     color: #D5B981;
@@ -1436,6 +1440,10 @@ a:focus {
     background-color:#1d2434 !important;
     border: none !important;
     border-radius: 8px !important;
+}
+
+.booking-input {
+    height: 48px !important;
 }
 
 .login-input {
@@ -1452,3 +1460,4 @@ a:focus {
     background-color: rgb(0, 0, 0, .1);
     color:#1D2434;
 }
+

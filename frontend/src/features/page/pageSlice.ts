@@ -12,6 +12,7 @@ export const pageSlice = createSlice({
     reducers: {
        setTab: (state, action: PayloadAction<string>) => {
         state.tab = action.payload;
+        console.log(state.tab);
         
        }
     }

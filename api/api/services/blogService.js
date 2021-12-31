@@ -19,7 +19,7 @@ exports.getallpaging = (searchViewModel) => {
 
 //get by id
 exports.getbyid = async (id) => {
-  return models.blogs.findOne({ where: { id: id } });
+  return models.blogs.findOne({ where: { blog_id: id } });
 };
 
 //create
@@ -29,7 +29,7 @@ exports.create = async (blogs) => {
 
 //update
 exports.update = async (id, blogUpdate) => {
-  const Id = await models.blogs.findOne({ where: { id: id } });
+  const Id = await models.blogs.findOne({ where: { blog_id: id } });
   if (!Id) {
     return Promise.resolve({
       message: messageConstants.BLOGS_ID_NOT_FOUND,
@@ -39,16 +39,16 @@ exports.update = async (id, blogUpdate) => {
       message: messageConstants.BLOGS_NOT_AVAILABLE,
     });
   } else {
-    return models.blogs.update(blogUpdate, { where: { id: id } });
+    return models.blogs.update(blogUpdate, { where: { blog_id: id } });
   }
 };
 
 //soft delete
 exports.delete = (id, options) => {
-  return models.blogs.update(options, { where: { id: id } });
+  return models.blogs.update(options, { where: { blog_id: id } });
 };
 
 //restore
 exports.restore = (id, options) => {
-  return models.blogs.update(options, { where: { id: id } });
+  return models.blogs.update(options, { where: { blog_id: id } });
 };

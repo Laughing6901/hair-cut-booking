@@ -19,7 +19,7 @@ exports.getAllpaging = (searchViewModel) => {
 
 //get-by-id
 exports.getByid = async (id) => {
-    return models.gallery.findOne({where: {id: id}});
+    return models.gallery.findOne({where: {gallery_id: id}});
 };
 
 
@@ -30,40 +30,40 @@ exports.create = async (gallery) => {
 
 //update
 exports.update = async (id, galleryUpdate) => {
-    const Id = await models.gallery.findOne({where: {id: id}});
+    const Id = await models.gallery.findOne({where: {gallery_id: id}});
     if(!Id){
         return Promise.resolve({
             messsage: messageConstants.GALLERY_ID_NOT_FOUND
         });
     }else{
-        return models.gallery.update(galleryUpdate, {where: {id: id}});
+        return models.gallery.update(galleryUpdate, {where: {gallery_id: id}});
     }
 };
 
 //soft delete
 exports.delete = (id, options) => {
-    return models.gallery.update(options, { where: {id: id} });
+    return models.gallery.update(options, { where: {gallery_id: id} });
 };
 
 //restore
 exports.restore = (id, options) => {
-    return models.gallery.update(options, {where: {id:id}});
+    return models.gallery.update(options, {where: {gallery_id:id}});
 };
 
 
 /// API get detail information about gallery relating with categories 
 exports.getCate = () => {
-    models.categories.hasMany(models.gallery, {foreignKey: 'id'});
-    models.gallery.belongsTo(models.categories, {foreignKey: 'cate_id'});
+    // models.categories.hasMany(models.gallery, {foreignKey: 'id'});
+    // models.gallery.belongsTo(models.categories, {foreignKey: 'cate_id'});
     return models.gallery.findAll({
       where:{deleted: false},
     order: [
         ['created_date', 'DESC']
     ],
-    attributes:['id','name'],
+    attributes:['gallery_id','name'],
     include:[{
         model: models.categories,
-        attributes:['id','name']
+        attributes:['cate_id','name']
     }]
     //     include: [{
     //         models: models.service,

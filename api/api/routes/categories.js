@@ -5,7 +5,7 @@ const cateController = require("../controller/categoryController");
 const { validate } = require('../middlewares/validator');
 
 router.get("/", cateController.getAll);
-router.get("/all-paging", cateController.getAllPaging);
+router.get("/all", cateController.getAllPaging);
 router.get("/get-by-id/:id", cateController.getById);
 router.post("/create", validate.validateCreateCategories(), cateController.create);
 router.put("/update/:id", validate.validateCreateCategories(), cateController.update);

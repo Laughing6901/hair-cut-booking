@@ -3,7 +3,7 @@ module.exports = function (sequelize, DataTypes) {
   var voucher = sequelize.define(
     "voucher",
     {
-      id: {
+      voucher_id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

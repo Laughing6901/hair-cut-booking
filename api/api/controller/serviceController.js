@@ -11,12 +11,12 @@ exports.getAll = (req, res) => {
     .then((data) => {
       res.status(200).json({
         success: true,
-        message: messageConstants.SERVICE_NOT_FOUND,
+        message: messageConstants.SERVICE_FOUND,
         data: data,
       });
     })
     .catch((err) => {
-      res.send({
+      res.status(404).send({
         error: {
           status: err.status || 500,
           message: err.message,
@@ -34,11 +34,11 @@ exports.getAllpaging = async (req, res) => {
   await serviceSer
     .getAllpaging(data)
     .then((data) => {
-      const reponse = Paginator.getPagingData(data, page, limit);
+      const response = Paginator.getPagingData(data, page, limit);
       res.status(200).json({
         success: true,
         message: messageConstants.SERVICE_NOT_FOUND,
-        data: reponse,
+        data: response,
       });
     })
     .catch((err) => {
@@ -232,7 +232,7 @@ exports.getCate = (req, res) => {
   serviceSer
     .getCate()
     .then((data) => {
-      res.status(404).json({
+      res.status(200).json({
         success: true,
         message: messageConstants.SERVICE_NOT_FOUND,
         categories: data,

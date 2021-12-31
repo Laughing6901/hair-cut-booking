@@ -88,13 +88,13 @@ exports.login = async (account)=>{
 
 // Find by Id
 exports.getbyID = async(id)=>{
-    return models.users.findOne({where:{id:id}})
+    return models.users.findOne({where:{user_id:id}})
 };
 
 
  // Update 
  exports.update=async(id,userUpdate)=>{
-  const Id= await models.users.findOne({where:{id:id}});
+  const Id= await models.users.findOne({where:{user_id:id}});
   if(!Id){
       return Promise.resolve({
          message: messageConstants.USER_ID_NOT_FOUND ,
@@ -103,17 +103,17 @@ exports.getbyID = async(id)=>{
   const salt= await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(userUpdate.password,salt);
   userUpdate.password= hashPassword;
-  return models.users.update(userUpdate,{where:{id:id}});
+  return models.users.update(userUpdate,{where:{user_id:id}});
      };
 };
 
 //  Deleted fake
 exports. delete=async (id,options)=>{
-    return models.users.update(options,{where:{id:id,deleted:0}});
+    return models.users.update(options,{where:{user_id:id,deleted:0}});
 };
 // Restore
 exports.restore=async (id,options)=>{
-   return models.users.update(options,{where:{id:id, deleted:1}});
+   return models.users.update(options,{where:{user_id:id, deleted:1}});
 };
 
 //    //  Delete
@@ -137,7 +137,7 @@ exports.resetpassword = async(id,account)=>{
           const salt= await bcrypt.genSalt(10);
           const hashPassword = await bcrypt.hash(account.password,salt);
           account.password= hashPassword;
-          return models.users.update(account,{where:{id:id}});
+          return models.users.update(account,{where:{user_id:id}});
          }
    }
    });

@@ -2,13 +2,15 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { useAppSelector } from "../../../app/hooks";
 import { Login } from "../../auth/login/login";
+import { selectLoginState } from "../../auth/login/loginSlice";
+import { UserTitle } from "../../user/userInfoTitle";
 import { headerArr } from "../page-dto";
 import { selectPageState } from "../pageSlice";
 
 export const Header:React.FC = () => {
     const HeaderTitle:string[] = headerArr;
     const tab = useAppSelector(selectPageState).tab;
-    
+    const loginState = useAppSelector(selectLoginState);
     return(
         <>
         {/* Top Bar Start */}
@@ -58,8 +60,7 @@ export const Header:React.FC = () => {
                             )
                         } 
                         )}
-                        <Login />
-                        
+                        {loginState.msg === "USER_LOGIN_SUSSCESS"? <UserTitle />:<Login /> }
                     </div>
                 </div>
             </div>

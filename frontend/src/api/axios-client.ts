@@ -30,16 +30,18 @@ axiosClient.interceptors.request.use(async (config) => {
 
 //Handle response infomation
 axiosClient.interceptors.response.use((response) => {
-    console.log(response);
+    let statusCode = response.status;
     if (response && response.data) {
-        return response.data;
+        let message = response.data;
+        return response.data
     }
-    return response; 
+    return {statusCode, response}; 
 }, (error) => {
-    // Handle errorsÍ
-    console.log("axiosClienterr(): ", error.response.data);
-    // return reject(error);
-    return error.response.data;
+    // Handle errors
+    console.log("axiosClienterr(): ", error.response.data, error.response.status);
+    let statusCode = error.response.status;
+    let message = error.response.data.message;
+    return {statusCode, message}
 });
 
 export default axiosClient;
