@@ -15,30 +15,13 @@ export const Header: React.FC = () => {
             </div>
             <div className="navbar-content scroll-div">
                 <ul className="nav pcoded-inner-navbar">
-                    <li className="nav-item pcoded-menu-caption">
+                    <li className="nav-item pcoded-menu-caption text-left">
                         <label>Navigation</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" className="nav-item active">
                         <a href="index.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-home"></i></span><span className="pcoded-mtext">Dashboard</span></a>
                     </li>
-                    <li className="nav-item pcoded-menu-caption">
-                        <label>UI Element</label>
-                    </li>
-                    <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" className="nav-item pcoded-hasmenu">
-                        <a href="javascript:" className="nav-link "><span className="pcoded-micon"><i className="feather icon-box"></i></span><span className="pcoded-mtext">Components</span></a>
-                        <ul className="pcoded-submenu">
-                            <li className=""><a href="bc_button.html" className="">Button</a></li>
-                            <li className=""><a href="bc_badges.html" className="">Badges</a></li>
-                            <li className=""><a href="bc_breadcrumb-pagination.html" className="">Breadcrumb & paggination</a></li>
-                            <li className=""><a href="bc_collapse.html" className="">Collapse</a></li>
-                            <li className=""><a href="bc_tabs.html" className="">Tabs & pills</a></li>
-                            <li className=""><a href="bc_typography.html" className="">Typography</a></li>
-
-
-                            <li className=""><a href="icon-feather.html" className="">Feather<span className="pcoded-badge label label-danger">NEW</span></a></li>
-                        </ul>
-                    </li>
-                    <li className="nav-item pcoded-menu-caption">
+                    <li className="nav-item pcoded-menu-caption text-left">
                         <label>Forms & table</label>
                     </li>
                     <li data-username="form elements advance componant validation masking wizard picker select" className="nav-item">
@@ -47,12 +30,12 @@ export const Header: React.FC = () => {
                     <li data-username="Table bootstrap datatable footable" className="nav-item">
                         <a href="tbl_bootstrap.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-server"></i></span><span className="pcoded-mtext">Table</span></a>
                     </li>
-                    <li className="nav-item pcoded-menu-caption">
+                    <li className="nav-item pcoded-menu-caption text-left">
                         <label>Chart & Maps</label>
                     </li>
                     <li data-username="Charts Morris" className="nav-item"><a href="chart-morris.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-pie-chart"></i></span><span className="pcoded-mtext">Chart</span></a></li>
                     <li data-username="Maps Google" className="nav-item"><a href="map-google.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-map"></i></span><span className="pcoded-mtext">Maps</span></a></li>
-                    <li className="nav-item pcoded-menu-caption">
+                    <li className="nav-item pcoded-menu-caption text-left">
                         <label>Pages</label>
                     </li>
                     <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe" className="nav-item pcoded-hasmenu">
