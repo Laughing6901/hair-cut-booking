@@ -1,6 +1,12 @@
 import React from "react";
+import { useAppSelector } from "../../../app/hooks";
+import { selectServiceState } from "../service/service";
+import { listCategories } from "../service/service-dto";
+
 
 export const PortfolioBody: React.FC = () => {
+    const listArray = ["first", "second", "third"];
+    const listService:listCategories = useAppSelector(selectServiceState).categories;
     return (
         <div className="portfolio">
             <div className="container">
@@ -12,13 +18,26 @@ export const PortfolioBody: React.FC = () => {
                     <div className="col-12">
                         <ul id="portfolio-flters">
                             <li data-filter="*" className="filter-active">All</li>
-                            <li data-filter=".first">Hair Cut</li>
-                            <li data-filter=".second">Beard Style</li>
-                            <li data-filter=".third">Color & Wash</li>
+                            {listService.map((item) => {
+                                return (
+                                    <li key={item.cate_id} data-filter= {`.${listArray[item.cate_id-1]}`}>{item.name}</li>
+                                )
+                            })}
                         </ul>
                     </div>
                 </div>
                 <div className="row portfolio-container">
+                    {listService.map((item) => {
+                        return (
+                            <div className={`col-lg-4 col-md-6 col-sm-12 portfolio-item ${listArray[item.cate_id-1]}`}>
+                                <div className="portfolio-wrap">
+                                    <a href={`http://localhost:8000/${item.image_cate}`} data-lightbox="portfolio">
+                                        <img src={`http://localhost:8000/${item.image_cate}`}alt="Portfolio Image" />
+                                    </a>
+                                </div>
+                            </div>
+                        )
+                    })}
                     <div className="col-lg-4 col-md-6 col-sm-12 portfolio-item first">
                         <div className="portfolio-wrap">
                             <a href="img/portfolio-1.jpg" data-lightbox="portfolio">

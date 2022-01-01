@@ -7,6 +7,7 @@ import { BlogBody } from "../blog/blog";
 import { ContactBody } from "../contact/contactBody";
 import { setTab } from "../pageSlice";
 import { PriceBody } from "../price/priceBody";
+import { getCategories } from "../service/service";
 import { ServiceBody } from "../service/serviceBody";
 import { HomePageBody } from "./homeBody";
 
@@ -14,6 +15,7 @@ export const HomePage: React.FC = () => {
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(setTab("Home"));
+        dispatch(getCategories())
     }, [])
     return(
         <>

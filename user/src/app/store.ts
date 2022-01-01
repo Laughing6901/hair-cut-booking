@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import pageReducer from '../features/page/pageSlice';
 import loginReducer from '../features/auth/login/loginSlice';
 import userReducer from '../features/user/userInfo';
+import serviceReducer from '../features/page/service/service'
 
 export const store = configureStore({
   reducer: {
     pageState: pageReducer,
     loginState: loginReducer,
     userInfo: userReducer,
+    serviceState: serviceReducer
   },
 });
 

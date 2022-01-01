@@ -10,13 +10,19 @@ exports.getAll = () => {
       deleted: false,
       
     },
-    include:[{
-      model: models.service,
-      attributes:['service_id','name', 'image', 'cate_id', 'status'],
-    },{
-      model: models.gallery,
-      attributes:['gallery_id','name', 'image']
-    }
+    include:[
+      {
+        model: models.service,
+        attributes:['service_id','name','price', 'image', 'cate_id', 'status'],
+      },
+      {
+        model: models.gallery,
+        attributes:['gallery_id','name', 'image']
+      }, 
+      {
+        model: models.voucher,
+        attributes: ["voucher_id", "voucher_code", "status", "image_service", "price", "description_voucher"]
+      }
   ],
   })
 };
