@@ -1,5 +1,10 @@
+import { useAppDispatch } from "../../../app/hooks"
+import { setToken } from "../../auth/login/loginSlice";
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Header: React.FC = () => {
+    const dispatch = useAppDispatch();
+    let navigate = useNavigate();
     return (
         <>
         <nav className="pcoded-navbar">
@@ -19,32 +24,20 @@ export const Header: React.FC = () => {
                         <label>Navigation</label>
                     </li>
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" className="nav-item active">
-                        <a href="index.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-home"></i></span><span className="pcoded-mtext">Dashboard</span></a>
+                        <Link to="/" className="nav-link "><span className="pcoded-micon"><i className="feather icon-home"></i></span><span className="pcoded-mtext">Dashboard</span></Link>
                     </li>
                     <li className="nav-item pcoded-menu-caption text-left">
-                        <label>Forms & table</label>
+                        <label>Create New Customer</label>
                     </li>
                     <li data-username="form elements advance componant validation masking wizard picker select" className="nav-item">
-                        <a href="form_elements.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-file-text"></i></span><span className="pcoded-mtext">Form elements</span></a>
-                    </li>
-                    <li data-username="Table bootstrap datatable footable" className="nav-item">
-                        <a href="tbl_bootstrap.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-server"></i></span><span className="pcoded-mtext">Table</span></a>
+                        <Link to ="/create" className="nav-link "><span className="pcoded-micon"><i className="feather icon-file-text"></i></span><span className="pcoded-mtext">Register Form</span></Link>
                     </li>
                     <li className="nav-item pcoded-menu-caption text-left">
                         <label>Chart & Maps</label>
                     </li>
                     <li data-username="Charts Morris" className="nav-item"><a href="chart-morris.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-pie-chart"></i></span><span className="pcoded-mtext">Chart</span></a></li>
                     <li data-username="Maps Google" className="nav-item"><a href="map-google.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-map"></i></span><span className="pcoded-mtext">Maps</span></a></li>
-                    <li className="nav-item pcoded-menu-caption text-left">
-                        <label>Pages</label>
-                    </li>
-                    <li data-username="Authentication Sign up Sign in reset password Change password Personal information profile settings map form subscribe" className="nav-item pcoded-hasmenu">
-                        <a href="javascript:" className="nav-link "><span className="pcoded-micon"><i className="feather icon-lock"></i></span><span className="pcoded-mtext">Authentication</span></a>
-                        <ul className="pcoded-submenu">
-                            <li className=""><a href="auth-signup.html" className="" target="_blank">Sign up</a></li>
-                            <li className=""><a href="auth-signin.html" className="" target="_blank">Sign in</a></li>
-                        </ul>
-                    </li>
+
                     <li data-username="Sample Page" className="nav-item"><a href="sample-page.html" className="nav-link"><span className="pcoded-micon"><i className="feather icon-sidebar"></i></span><span className="pcoded-mtext">Sample page</span></a></li>
                     <li data-username="Disabled Menu" className="nav-item disabled"><a href="javascript:" className="nav-link"><span className="pcoded-micon"><i className="feather icon-power"></i></span><span className="pcoded-mtext">Disabled menu</span></a></li>
                 </ul>
@@ -151,9 +144,14 @@ export const Header: React.FC = () => {
                             <div className="pro-head">
                                 <img src="assets/images/user/avatar-1.jpg" className="img-radius" alt="User-Profile-Image"/>
                                 <span>John Doe</span>
-                                <a href="auth-signin.html" className="dud-logout" title="Logout">
+                                <button  className=" btn dud-logout" title="Logout" onClick={() => {
+                                    dispatch(setToken(''));
+                                    sessionStorage.removeItem("token");
+                                    navigate("/",{replace:true});
+                                    window.location.reload();
+                                }}>
                                     <i className="feather icon-log-out"></i>
-                                </a>
+                                </button>
                             </div>
                             <ul className="pro-body">
                                 <li><a href="javascript:" className="dropdown-item"><i className="feather icon-settings"></i> Settings</a></li>

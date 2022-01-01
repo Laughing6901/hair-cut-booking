@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Header } from "../header/header";
 import { BookingWeek } from "./bookingView/bookingWeek";
 import { BookingAtTime } from "./bookingView/bookingAtTime";
@@ -9,6 +9,8 @@ import { DailySale } from "./sale/dailySale";
 import { MonthlySale } from "./sale/monthlySale";
 import { YearlySale } from "./sale/yearlySale";
 import { AdminLogin } from "../../auth/login/login";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { selectLoginState, setToken } from '../../auth/login/loginSlice';
 
 export const Home:React.FC = () => {
     return (
@@ -40,7 +42,12 @@ export const Home:React.FC = () => {
     )
 }
 
-export const Layout: React.FC = () => {
+type state = {
+    token: string,
+}
+
+export const SetLayout:React.FC<state> = ({token}) => {
+    console.log(token);
     if(sessionStorage.getItem("token") !== null) {
         return (
             <Home />
@@ -48,4 +55,14 @@ export const Layout: React.FC = () => {
     } else {
         return <AdminLogin />
     }
+}
+
+export const Layout: React.FC = () => {
+    let loginState = useAppSelector(selectLoginState);
+    let token = JSON.stringify(sessionStorage.getItem('token'));
+    
+    return(
+        <SetLayout token={token} />
+    )
+    
 }
