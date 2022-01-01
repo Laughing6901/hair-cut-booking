@@ -1,5 +1,5 @@
-
 import React from "react";
+import {Progress} from 'reactstrap'
 
 export const DailySale: React.FC = () => {
     return (
@@ -15,8 +15,8 @@ export const DailySale: React.FC = () => {
                             <p className="m-b-0">67%</p>
                         </div>
                     </div>
-                    <div className="progress m-t-30 height-7px">
-                        <div className="progress-bar progress-c-theme w-50"></div>
+                    <div className="progress m-t-30" style={{height: 7}}>
+                        <div className="progress-bar progress-c-theme w-50" role="progressbar"></div>
                     </div>
                 </div>
             </div>
