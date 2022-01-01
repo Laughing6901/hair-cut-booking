@@ -2,15 +2,16 @@ import React from 'react';
 import './App.css';
 import { Header } from './features/pages/header/header';
 import { AdminLogin } from './features/auth/login/login';
-import { Home } from './features/pages/homePage/home';
+import { Home, Layout } from './features/pages/homePage/home';
+import { Route, Routes } from 'react-router-dom';
+import { ForgotPassword } from './features/auth/login/forgotPassword';
 
 function App() {
   return (
-    <div>
-      {/* <Header/> */}
-      <Home />
-      {/* <AdminLogin /> */}
-    </div>
+    <Routes>
+      <Route path= "/" element = {<Layout />} />
+      <Route path= "/reset" element = {<ForgotPassword/>} />
+    </Routes>
   );
 }
 

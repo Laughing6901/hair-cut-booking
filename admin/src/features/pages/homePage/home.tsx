@@ -8,6 +8,7 @@ import { YearChart } from "./chart/yearChart";
 import { DailySale } from "./sale/dailySale";
 import { MonthlySale } from "./sale/monthlySale";
 import { YearlySale } from "./sale/yearlySale";
+import { AdminLogin } from "../../auth/login/login";
 
 export const Home:React.FC = () => {
     return (
@@ -37,4 +38,14 @@ export const Home:React.FC = () => {
         </div>
         </>
     )
+}
+
+export const Layout: React.FC = () => {
+    if(sessionStorage.getItem("token") !== null) {
+        return (
+            <Home />
+        )
+    } else {
+        return <AdminLogin />
+    }
 }

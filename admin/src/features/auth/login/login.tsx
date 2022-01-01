@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 export const AdminLogin: React.FC = () => {
     return (
@@ -29,7 +30,7 @@ export const AdminLogin: React.FC = () => {
                         </div>
                     </div>
                     <button className="btn btn-primary shadow-2 mb-4">Login</button>
-                    <p className="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p>
+                    <p className="mb-2 text-muted">Forgot password? <Link to="/reset">Reset</Link></p>
                 </div>
             </div>
         </div>
