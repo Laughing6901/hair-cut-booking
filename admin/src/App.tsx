@@ -2,12 +2,14 @@ import React from 'react';
 import './App.css';
 import { Header } from './features/pages/header/header';
 import { AdminLogin } from './features/auth/login/login';
+import { Home } from './features/pages/homePage/home';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       {/* <Header/> */}
-      <AdminLogin />
+      <Home />
+      {/* <AdminLogin /> */}
     </div>
   );
 }

@@ -58,12 +58,12 @@ File: style.css
       Custom css start
 ==========================  **/
 body {
-  font-family: "Open Sans", sans-serif;
-  font-size: 14px;
-  color: #888;
-  font-weight: 400;
-  background: #f4f7fa;
-  position: relative;
+  font-family: "Open Sans", sans-serif !important;
+  font-size: 14px !important;
+  color: #888 !important;
+  font-weight: 400 !important;
+  background: #f4f7fa !important;
+  position: relative !important;
 }
 
 *:focus {
@@ -10569,6 +10569,10 @@ div.code-toolbar > .toolbar span:hover {
 	opacity: 1
 }
 
+.height-7px {
+  height: 7px !important;
+}
+
 @-webkit-keyframes pulse {
 	0% {
 		-webkit-box-shadow: 0 0 0 0 rgba(121, 181, 48, 0.3);
@@ -10598,3 +10602,4 @@ div.code-toolbar > .toolbar span:hover {
 		box-shadow: 0 0 0 0 rgba(4, 169, 245, 0)
 	}
 }
+
