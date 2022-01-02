@@ -13,7 +13,7 @@ import { Footer } from './features/page/footer/footer';
 import { PortfolioPage } from './features/page/gallery/portfolioPage';
 import { useAppDispatch } from './app/hooks';
 import { getCategories } from './features/page/service/category';
-import { getAllService } from './features/page/price/serviceOnly';
+import { getAllService } from './features/page/price/serviceOnlySlice';
 
 const App:React.FC = () => {
   const dispatch = useAppDispatch();

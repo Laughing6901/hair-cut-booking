@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../../../app/hooks";
-import { selectServiceState } from "./serviceOnly";
+import { selectServiceState } from "./serviceOnlySlice";
 
 export const PriceBody: React.FC = () => {
     const service = useAppSelector(selectServiceState).serviceOnly;

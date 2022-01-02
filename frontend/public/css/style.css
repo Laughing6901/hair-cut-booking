@@ -1461,3 +1461,17 @@ a:focus {
     color:#1D2434;
 }
 
+input:checked + label {
+    background-color: #D5B981;
+}
+
+.test-check:checked  + label{
+    background-color: #D5B981;
+}
+
+
+.h-50-content {
+    height: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
