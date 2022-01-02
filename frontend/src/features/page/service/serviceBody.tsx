@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../../app/hooks";
-import { selectServiceState } from "./service";
+import { selectCategoryState } from "./category";
 import { listCategories } from "./service-dto";
 
 export const ServiceBody: React.FC = () => {
-    const category: listCategories = useAppSelector(selectServiceState).categories;
+    const category: listCategories = useAppSelector(selectCategoryState).categories;
 
     return (
         <div className="service">

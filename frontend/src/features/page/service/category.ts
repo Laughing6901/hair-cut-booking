@@ -6,7 +6,6 @@ import { serviceState } from './service-dto';
 export const getCategories = createAsyncThunk(
     'categories/getCategories', async(req, thunkApi) => {
         const response: any = await pageApi.getCate();
-        console.log(response);
         if (response.statusCode >300) {
             return thunkApi.rejectWithValue(response.message);
         }
@@ -22,7 +21,7 @@ const initialState: serviceState  = {
     errMsg: '',
 };
 
-export const serviceSlice = createSlice({
+export const categorySlice = createSlice({
     name:'categories',
     initialState,
     reducers: {
@@ -42,13 +41,12 @@ export const serviceSlice = createSlice({
             state.errMsg = action.payload.message;
             //set data from data response from server
             state.categories = action.payload.data;
-            console.log(state.categories);
         })
     }
 })
 
 
-export const { reducer, actions } = serviceSlice;
+export const { reducer, actions } = categorySlice;
 // export const { setTab } = actions;
-export const selectServiceState = (state: RootState) => state.serviceState;
+export const selectCategoryState = (state: RootState) => state.categoryState;
 export default reducer;

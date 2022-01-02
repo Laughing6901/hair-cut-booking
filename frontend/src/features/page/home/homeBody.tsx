@@ -1,5 +1,5 @@
 import React from "react";
-import { GuestBookingForm } from "../../user/booking/booking";
+import { GuestBookingForm } from "../../user/booking/guestBooking";
 
 export const HomePageBody: React.FC = () => {
     return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AboutUs } from './features/page/about/aboutUsPage';
@@ -11,8 +11,16 @@ import { BlogPage } from './features/page/blog/blogPage';
 import { ContactPage } from './features/page/contact/contactPage';
 import { Footer } from './features/page/footer/footer';
 import { PortfolioPage } from './features/page/gallery/portfolioPage';
+import { useAppDispatch } from './app/hooks';
+import { getCategories } from './features/page/service/category';
+import { getAllService } from './features/page/price/serviceOnly';
 
-function App() {
+const App:React.FC = () => {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getCategories());
+    dispatch(getAllService());
+  }, [])
   return (
     <div>
       <Header/>

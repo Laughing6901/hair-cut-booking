@@ -7,5 +7,9 @@ export const pageApi = {
     getCate: () => {
         let url = `categories/`;
         return axiosClient.get(url);
+    },
+    getService: () => {
+        let url = `service/`;
+        return axiosClient.get(url);
     }
 }

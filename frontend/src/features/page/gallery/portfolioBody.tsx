@@ -1,12 +1,12 @@
 import React from "react";
 import { useAppSelector } from "../../../app/hooks";
-import { selectServiceState } from "../service/service";
+import { selectCategoryState } from "../service/category";
 import { listCategories } from "../service/service-dto";
 
 
 export const PortfolioBody: React.FC = () => {
     const listArray = ["first", "second", "third"];
-    const listService:listCategories = useAppSelector(selectServiceState).categories;
+    const listService:listCategories = useAppSelector(selectCategoryState).categories;
     return (
         <div className="portfolio">
             <div className="container">

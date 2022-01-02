@@ -8,9 +8,9 @@ export const GuestBookingForm:React.FC = () => {
             initialValues={{
                 contact: '',
                 phone: '',
-                description: '',
                 stylelist: '',
-                service: ''
+                service: [],
+                description: '',
             }}
             // validationSchema={loginValidate}
             onSubmit={values => {
