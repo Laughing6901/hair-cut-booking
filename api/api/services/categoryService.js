@@ -29,14 +29,17 @@ exports.getAll = () => {
 
 //get all paging
 exports.getAllPaging = (searchViewModel) => {
-  // limit = searchViewModel.limit;
-  // offset = searchViewModel.offset;
+  limit = searchViewModel.limit;
+  offset = searchViewModel.offset;
   return models.categories.findAll({
-    // limit: limit,
-    // offset: offset,
+    limit: limit,
+    offset: offset,
     where: { 
-      include: models.service,
-      deleted: false },
+      deleted: false 
+    },
+    include: {
+      model: models.service
+    },
   });
 };
 

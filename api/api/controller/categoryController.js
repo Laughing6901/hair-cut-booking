@@ -26,7 +26,9 @@ exports.getAll = (req, res) => {
 
 //get all paging
 exports.getAllPaging = async (req, res) => {
-  // const { limit, offset } = Paginator.getPagination(page, size);
+  const page = parseInt(req.query.page) || 1;
+  const size = parseInt(req.query.size);
+  const { limit, offset } = Paginator.getPagination(page, size);
   const data = { limit, offset };
   await cateService
     .getAllPaging(data)

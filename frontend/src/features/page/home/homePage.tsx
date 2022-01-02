@@ -23,7 +23,6 @@ export const HomePage: React.FC = () => {
         <BarberBody />
         <ContactBody />
         <BlogBody />
-        <a href="#" className="back-to-top"><i className="fa fa-chevron-up"></i></a>
     </>
     )
 }

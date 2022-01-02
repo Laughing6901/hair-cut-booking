@@ -34,7 +34,7 @@ exports.getAllPaging = async (req, res) => {
     .getallpaging(data)
     .then((data) => {
       const reponse = Paginator.getPagingData(data, page, limit);
-      res.status(400).json({
+      res.status(200).json({
         success: true,
         message: messageConstants.BLOGS_NOT_FOUND,
         data: reponse,

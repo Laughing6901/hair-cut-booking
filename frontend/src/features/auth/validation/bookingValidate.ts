@@ -1,11 +1,11 @@
 import * as Yup from 'yup';
-export const loginValidate = Yup.object().shape({
-    username: Yup.string()
-    .min(6, 'Too Short!')
+export const bookingValidate = Yup.object().shape({
+    contact: Yup.string()
+    .min(6, 'Edit your full name')
     .max(50, 'Too Long!')
     .required('Required'),
-    password: Yup.string()
-    .min(6, 'Too Short!')
-    .max(50, 'Too Long!')
+    phone: Yup.string()
+    .min(10, 'wrong phone number')
+    .max(10, 'wrong phone number')
     .required('Required'),
 });
