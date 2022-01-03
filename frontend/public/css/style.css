@@ -6,6 +6,10 @@ body {
     background: #ffffff;
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
+    
+}
+body ::-webkit-scrollbar {
+    display: none;
 }
 
 h1,
@@ -1471,7 +1475,13 @@ input:checked + label {
 
 
 .h-50-content {
+    width: 600px !important;
     height: 80%;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.service-img-size {
+    width:100%;
+    object-fit:cover;
 }

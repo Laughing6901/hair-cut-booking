@@ -5,6 +5,7 @@ export interface service {
     image: string,
     cate_id: number,
     status: number
+    price: string
 }
 
 export type listService = service[]

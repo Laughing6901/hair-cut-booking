@@ -60,21 +60,24 @@ export const GuestBookingForm:React.FC = () => {
                         <div role="group" className="row portfolio-container justify-content-center " aria-labelledby="checkbox-group">
                             {categories.map((item) => {
                                 return (
-                                    <div className="col-lg-11 col-md-11 mt-2 col-sm-12" key={item.cate_id}>
-                                        <h5 className="text-white">{item.name.toUpperCase()}</h5>
+                                    <div className="col-lg-11 bg-white rounded-top rounded-5 p-0 col-md-11 mt-2 col-sm-12" key={item.cate_id}>
+                                        <h4 className="p-2 px-4 mt-2">{item.name.toUpperCase()}</h4>
                                         {item.services.map((service) => {
                                                 return (
-                                                    <label key={service.service_id} className="col-lg-6 col-md-6 text-center">
-                                                        <div className="service-item">
+                                                    <label key={service.service_id} className=" col-lg-6 col-md-6 text-center">
+                                                        <div className="service-item border border-dark rounded mb-3">
                                                             <div className="service-img">
-                                                                <img src= {`http://localhost:8000/${service.image}`} alt="Image"/>
+                                                                <img className='service-img-size' src= {`http://localhost:8000/${service.image}`} alt="Image"/>
                                                             </div>
-                                                            <h5 className="text-white ">{service.name}</h5>
-                                                            <p>
+                                                            <h5 className=" text-left m-2 pb-2 mb-3">{service.name}</h5>
+                                                            <p className='text-dark font-weight-lighter text-left m-2'>
                                                                 Lorem ipsum dolor sit amet elit.
                                                             </p>
+                                                            <p className=' text-dark text-left mt-1 m-2'>
+                                                                {Number(service.price)/1000}K
+                                                            </p>
+                                                            <Field type="checkbox" className = "test-check mb-3" name="service" value= {JSON.stringify(service.service_id)}/>
                                                         </div>
-                                                        <Field type="checkbox" className = "test-check" name="service" value= {JSON.stringify(service.service_id)}/>
                                                     </label>
                                                 )
                                         })}
