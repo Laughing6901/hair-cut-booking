@@ -22,6 +22,22 @@ exports.get = async (req, res) => {
       });
 };
 
+//get All stylist
+exports.getStylist = async (req, res) => {
+   await userService.getAllStylist().then( result =>{
+     res.status(200).json({
+      success: true,
+      message:messageConstants.USER_FOUND,
+       data: result
+     });
+      }).catch(err => {
+        res.status(500).send({
+        message: err.message ||500
+        });
+      });
+};
+
+
 // Get All paging
   exports.getallpaging = async function (req, res) {
   const  page = parseInt(req.query.page) || 1;

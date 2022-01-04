@@ -8,6 +8,12 @@ export const bookingValidate = Yup.object().shape({
     .min(10, 'wrong phone number')
     .max(10, 'wrong phone number')
     .required('Required'),
+    date: Yup.string()
+    .min(1, 'choose the date you want')
+    .required(),
+    time: Yup.string()
+    .min(1, 'choose the time you want')
+    .required(),
     service: Yup.array()
     .min(1, 'choose service'),
     // .required('Required'),

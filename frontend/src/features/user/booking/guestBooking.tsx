@@ -6,12 +6,15 @@ import { bookingValidate } from "../../auth/validation/bookingValidate";
 import { selectBarberState } from '../../page/barber/barberSlice';
 import { selectCategoryState } from "../../page/service/category";
 import { selectBookingState } from "./ bookingSlice";
-import { bookingForm } from "./booking-dto";
+import { bookingForm, timeForBooking, weekday } from "./booking-dto";
 
 export const GuestBookingForm:React.FC = () => {
     const bookingState = useAppSelector(selectBookingState);
     const categories = useAppSelector(selectCategoryState).categories;
     const listBarber = useAppSelector(selectBarberState).listBarber;
+    const timeBooking = timeForBooking;
+    const weekDay = weekday;
+    const today = new Date(Date.now());
     const dispatch = useAppDispatch();
     const initialValues: bookingForm = bookingState.bookingform;
     return (
@@ -19,11 +22,12 @@ export const GuestBookingForm:React.FC = () => {
             initialValues={initialValues}
             validationSchema={bookingValidate}
             onSubmit={values => {
-                console.log("in here");
-                console.log(values);
+                values.start_time = new Date(today.getFullYear(), today.getMonth(), Number(values.date),Math.round(Number(values.time)/100), Number(values.time)%100 );
+                let {date, time, ...dataReq} = values;
+                console.log(dataReq);
             }}
             >
-            {({ errors, touched }) => (
+            {({ errors, touched,values }) => (
                 <Form className="row justify-content-center">
                     <div className="col-sm-10 text-left px-0">
                         <h5 className="font-weight-bold">Salon Address</h5>
@@ -48,15 +52,16 @@ export const GuestBookingForm:React.FC = () => {
                     </div>
                     <Field name="phone" className="col-sm-10 mb-2 booking-input login-input" placeholder = "your phone number"/>
 
+                    <div className="col-sm-10 text-left px-0">
+                        <h5 className="font-weight-bold">Choose Service</h5>
+                    </div>
+
                     <div className = "col-sm-10 text-danger text-left" >
                         {errors.service && touched.service  ? (
                             <div>{errors.service}</div>
                         ) : null}
                     </div>
 
-                    <div className="col-sm-10 text-left px-0">
-                        <h5 className="font-weight-bold">Choose Service</h5>
-                    </div>
                     <Popup className='h-50' trigger={<button type="button" className="col-sm-10 mb-2 login-input bg-white booking-input text-left p-2"> <i className="fas fa-cut"></i> {`Service >`} </button>}  modal>
                         <div role="group" className="row portfolio-container justify-content-center " aria-labelledby="checkbox-group">
                             {categories.map((item) => {
@@ -110,12 +115,57 @@ export const GuestBookingForm:React.FC = () => {
                         })}
                     </div>
                     </Popup>
-                    <button type="button" className="col-sm-10 mb-2 login-input booking-input text-left bg-white p-2" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> <i className="fas fa-calendar-alt"></i> {`Date & Time >`} 
-                    </button>
-                    <div className="collapse row col-sm-11" id="collapseExample">
-                        <div className="card card-body ">
-                        </div>
+
+                    <div className = "col-sm-10 text-danger text-left" >
+                        {errors.date && touched.date  ? (
+                            <div>{errors.date}</div>
+                        ) : null}
                     </div>
+
+                    <Field as="select" className="col-sm-10 mb-2 login-input booking-input text-left bg-white p-2" name="date">
+                        <option value="">choose date...</option>
+                        {
+                            weekDay.map((item, index) => {
+                                return (
+                                    <option key={index} value={`${today.getDate() + index}`}>
+                                        {weekday[(today.getDay()+index)%7]}
+                                    </option>
+                                )
+                            })
+                        }
+                    </Field>
+                    <div className = "col-sm-10 text-danger text-left" >
+                        {errors.time && touched.time  ? (
+                            <div>{errors.time}</div>
+                        ) : null}
+                    </div>
+                    <Field as="select" className="col-sm-10 mb-2 login-input booking-input text-left bg-white p-2" name="time">
+                        <option value="">choose time...</option>
+                        {timeBooking.map((item, index) => {
+                            if(item >= today.getHours()*100 + today.getMinutes()) {
+                                return (
+                                    <option key={index} value={
+                                        `${today.getDate() + index}`
+                                        // `${new Date(today.getFullYear(), today.getDate(), )}`
+                                    }>
+                                        {item%100 === 0 ?
+                                        `${Math.round(item/100)}h00` :
+                                        `${Math.round(item/100)}h${item%100}`}
+                                    </option>
+                                )
+                            } else if(Number(values.date) > today.getDate() ) {
+                                return (
+                                    <option key={index} value={
+                                        item
+                                    }>
+                                        {item%100 === 0 ?
+                                        `${Math.round(item/100)}h00` :
+                                        `${Math.round(item/100)}h${item%100}`}
+                                    </option>
+                                )   
+                            }
+                        })}
+                    </Field>
                     <div className="col-sm-10 text-left px-0">
                         <h6 className="mx-3 font-weight-bold">Description</h6>
                     </div>

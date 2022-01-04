@@ -6,6 +6,7 @@ const checkAuthMiddleware= require('../middlewares/jwt_token');
 
 
 router.get('/',checkAuthMiddleware.checkAccessToken,usersController.get);
+router.get('/stylist',usersController.getStylist);
 router.get('/all-paging',checkAuthMiddleware.checkAccessToken,usersController.getallpaging);
 router.get('/:id',checkAuthMiddleware.checkAccessToken,usersController.getbyID);
 router.put('/:id',checkAuthMiddleware.checkAccessToken,validate.validateRegisterUser(),usersController.update);

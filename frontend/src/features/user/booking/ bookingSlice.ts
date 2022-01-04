@@ -17,7 +17,7 @@ const initialState:bookingState = {
         stylist: '',
         service: [],
         description: '',
-        time: new Date(),
+        start_time: null,
     }
 }
 

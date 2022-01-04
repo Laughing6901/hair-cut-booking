@@ -18,6 +18,16 @@ exports.get = () => {
    return models.users.findAndCountAll({where:{deleted: false}});
 };
 
+exports.getAllStylist = () => {
+   return models.users.findAll(
+      {
+         where:{
+            role: 4,
+            deleted: false
+         }
+      });
+};
+
 // Get all paging information about users
 
 exports.getallpaging = function (searchViewModel) {
