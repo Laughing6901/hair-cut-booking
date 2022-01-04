@@ -11,5 +11,9 @@ export const pageApi = {
     getService: () => {
         let url = `service/`;
         return axiosClient.get(url);
+    },
+    getBarber: () => {
+        let url = `users/stylist`;
+        return axiosClient.get(url);
     }
 }

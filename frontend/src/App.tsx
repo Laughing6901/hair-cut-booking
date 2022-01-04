@@ -14,12 +14,14 @@ import { PortfolioPage } from './features/page/gallery/portfolioPage';
 import { useAppDispatch } from './app/hooks';
 import { getCategories } from './features/page/service/category';
 import { getAllService } from './features/page/price/serviceOnlySlice';
+import { getBarber } from './features/page/barber/barberSlice';
 
 const App:React.FC = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getAllService());
+    dispatch(getBarber());
   }, [])
   return (
     <div>

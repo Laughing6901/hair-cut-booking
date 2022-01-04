@@ -1485,3 +1485,12 @@ input:checked + label {
     width:100%;
     object-fit:cover;
 }
+
+.stylist-content {
+    overflow-x: scroll;
+
+}
+
+.team-text-mg {
+    margin: -20px 24px 0 0px !important;
+}

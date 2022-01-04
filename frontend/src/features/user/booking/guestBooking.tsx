@@ -3,6 +3,7 @@ import React from "react";
 import { Popup } from 'reactjs-popup';
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { bookingValidate } from "../../auth/validation/bookingValidate";
+import { selectBarberState } from '../../page/barber/barberSlice';
 import { selectCategoryState } from "../../page/service/category";
 import { selectBookingState } from "./ bookingSlice";
 import { bookingForm } from "./booking-dto";
@@ -10,6 +11,7 @@ import { bookingForm } from "./booking-dto";
 export const GuestBookingForm:React.FC = () => {
     const bookingState = useAppSelector(selectBookingState);
     const categories = useAppSelector(selectCategoryState).categories;
+    const listBarber = useAppSelector(selectBarberState).listBarber;
     const dispatch = useAppDispatch();
     const initialValues: bookingForm = bookingState.bookingform;
     return (
@@ -56,30 +58,29 @@ export const GuestBookingForm:React.FC = () => {
                         <h5 className="font-weight-bold">Choose Service</h5>
                     </div>
                     <Popup className='h-50' trigger={<button type="button" className="col-sm-10 mb-2 login-input bg-white booking-input text-left p-2"> <i className="fas fa-cut"></i> {`Service >`} </button>}  modal>
-
                         <div role="group" className="row portfolio-container justify-content-center " aria-labelledby="checkbox-group">
                             {categories.map((item) => {
                                 return (
                                     <div className="col-lg-11 bg-white rounded-top rounded-5 p-0 col-md-11 mt-2 col-sm-12" key={item.cate_id}>
                                         <h4 className="p-2 px-4 mt-2">{item.name.toUpperCase()}</h4>
                                         {item.services.map((service) => {
-                                                return (
-                                                    <label key={service.service_id} className=" col-lg-6 col-md-6 text-center">
-                                                        <div className="service-item border border-dark rounded mb-3">
-                                                            <div className="service-img">
-                                                                <img className='service-img-size' src= {`http://localhost:8000/${service.image}`} alt="Image"/>
-                                                            </div>
-                                                            <h5 className=" text-left m-2 pb-2 mb-3">{service.name}</h5>
-                                                            <p className='text-dark font-weight-lighter text-left m-2'>
-                                                                Lorem ipsum dolor sit amet elit.
-                                                            </p>
-                                                            <p className=' text-dark text-left mt-1 m-2'>
-                                                                {Number(service.price)/1000}K
-                                                            </p>
-                                                            <Field type="checkbox" className = "test-check mb-3" name="service" value= {JSON.stringify(service.service_id)}/>
+                                            return (
+                                                <label key={service.service_id} className=" col-lg-6 col-md-6 text-center">
+                                                    <div className="service-item border border-dark rounded mb-3">
+                                                        <div className="service-img">
+                                                            <img className='service-img-size' src= {`http://localhost:8000/${service.image}`} alt="Image"/>
                                                         </div>
-                                                    </label>
-                                                )
+                                                        <h5 className=" text-left m-2 pb-2 mb-3">{service.name}</h5>
+                                                        <p className='text-dark font-weight-lighter text-left m-2'>
+                                                            Lorem ipsum dolor sit amet elit.
+                                                        </p>
+                                                        <p className=' text-dark text-left mt-1 m-2'>
+                                                            {Number(service.price)/1000}K
+                                                        </p>
+                                                        <Field type="checkbox" className = "test-check mb-3" name="service" value= {JSON.stringify(service.service_id)}/>
+                                                    </div>
+                                                </label>
+                                            )
                                         })}
                                     </div>
                                 )
@@ -90,14 +91,31 @@ export const GuestBookingForm:React.FC = () => {
                     <div className="col-sm-10 text-left px-0">
                         <h5 className="font-weight-bold">Choose Time & Stylist</h5>
                     </div>
-                    <Popup trigger={<button type="button" className="col-sm-10 mb-2 login-input booking-input text-left bg-white p-2"> <i className="fas fa-user-tie"></i> {`Stylist >`} </button>}  modal>
-
-
+                    <Popup className='stylist' trigger={<button type="button" className="col-sm-10 mb-2 login-input booking-input text-left bg-white p-2"> <i className="fas fa-user-tie"></i> {`Stylist >`} </button>}  modal>
+                        <div className='team d-flex pt-3 mx-3'>
+                        {listBarber.map((item) => {
+                            return (
+                                <label key={item.user_id} className="team-item mb-0">
+                                    <div className="team-img mr-4" style={{width: 200}}>
+                                        <img className='w-100' src={`http://localhost:8000/${item.avatar}`} alt="Team Image"/>
+                                    </div>
+                                    <div className="team-text team-text-mg p-0">
+                                        <p>{item.fullname}</p>
+                                    </div>
+                                    <div className='text-center'>
+                                        <Field type="radio" className = "test-check mt-3" name="stylist" value= {JSON.stringify(item.user_id)}/>
+                                    </div>
+                                </label>
+                            )
+                        })}
+                    </div>
                     </Popup>
-                    <Popup trigger={<button type="button" className="col-sm-10 mb-2 login-input booking-input text-left bg-white p-2"> <i className="fas fa-calendar-alt"></i> {`Date & Time >`} </button>}  modal>
-
-
-                    </Popup>
+                    <button type="button" className="col-sm-10 mb-2 login-input booking-input text-left bg-white p-2" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> <i className="fas fa-calendar-alt"></i> {`Date & Time >`} 
+                    </button>
+                    <div className="collapse row col-sm-11" id="collapseExample">
+                        <div className="card card-body ">
+                        </div>
+                    </div>
                     <div className="col-sm-10 text-left px-0">
                         <h6 className="mx-3 font-weight-bold">Description</h6>
                     </div>

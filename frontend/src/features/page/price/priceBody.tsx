@@ -21,7 +21,7 @@ export const PriceBody: React.FC = () => {
                                     </div>
                                     <div className="price-text">
                                         <h2>{item.name}</h2>
-                                        <h3>{item.price} vnd</h3>
+                                        <h3>{Number(item.price)/1000}K</h3>
                                     </div>
                                 </div>
                             </div>

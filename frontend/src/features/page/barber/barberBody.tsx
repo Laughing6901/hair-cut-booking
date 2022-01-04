@@ -1,6 +1,10 @@
 import React from "react";
+import { useAppSelector } from "../../../app/hooks";
+import { listBarber } from "./barber-dto";
+import { selectBarberState } from "./barberSlice";
 
 export const BarberBody: React.FC= () => {
+    const listBarber:listBarber = useAppSelector(selectBarberState).listBarber;
     return (
         <div className="team">
             <div className="container">
@@ -9,50 +13,20 @@ export const BarberBody: React.FC= () => {
                     <h2>Meet Our Hair Cut Expert Barber</h2>
                 </div>
                 <div className="row">
-                    <div className="col-lg-3 col-md-6">
-                        <div className="team-item">
-                            <div className="team-img">
-                                <img src="img/team-1.jpg" alt="Team Image"/>
+                    {listBarber.map((item) => {
+                        return (
+                            <div key={item.user_id} className="col-lg-3 col-md-6">
+                                <div className="team-item">
+                                    <div className="team-img">
+                                        <img src={`http://localhost:8000/${item.avatar}`} alt="Team Image"/>
+                                    </div>
+                                    <div className="team-text">
+                                        <h2>{item.fullname}</h2>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="team-text">
-                                <h2>Adam Phillips</h2>
-                                <p>Master Barber</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <div className="team-item">
-                            <div className="team-img">
-                                <img src="img/team-2.jpg" alt="Team Image"/>
-                            </div>
-                            <div className="team-text">
-                                <h2>Dylan Adams</h2>
-                                <p>Hair Expert</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <div className="team-item">
-                            <div className="team-img">
-                                <img src="img/team-3.jpg" alt="Team Image"/>
-                            </div>
-                            <div className="team-text">
-                                <h2>Gloria Edwards</h2>
-                                <p>Beard Expert</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <div className="team-item">
-                            <div className="team-img">
-                                <img src="img/team-4.jpg" alt="Team Image"/>
-                            </div>
-                            <div className="team-text">
-                                <h2>Josh Dunn</h2>
-                                <p>Color Expert</p>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>
