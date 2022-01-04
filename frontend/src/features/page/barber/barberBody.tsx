@@ -18,7 +18,7 @@ export const BarberBody: React.FC= () => {
                             <div key={item.user_id} className="col-lg-3 col-md-6">
                                 <div className="team-item">
                                     <div className="team-img">
-                                        <img src={`http://localhost:8000/${item.avatar}`} alt="Team Image"/>
+                                        <img src={`${process.env.REACT_APP_SERVER_URL}${item.avatar}`} alt="Team Image"/>
                                     </div>
                                     <div className="team-text">
                                         <h2>{item.fullname}</h2>

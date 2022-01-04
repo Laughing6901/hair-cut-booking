@@ -17,7 +17,7 @@ export const PriceBody: React.FC = () => {
                             <div key={item.service_id} className="col-lg-3 col-md-4 col-sm-6">
                                 <div className="price-item">
                                     <div className="price-img">
-                                        <img src={`http://localhost:8000${item.image}`} alt="Image"/>
+                                        <img src={`${process.env.REACT_APP_SERVER_URL}${item.image}`} alt="Image"/>
                                     </div>
                                     <div className="price-text">
                                         <h2>{item.name}</h2>

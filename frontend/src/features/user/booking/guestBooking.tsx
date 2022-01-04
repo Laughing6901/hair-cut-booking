@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { bookingValidate } from "../../auth/validation/bookingValidate";
 import { selectBarberState } from '../../page/barber/barberSlice';
 import { selectCategoryState } from "../../page/service/category";
-import { selectBookingState } from "./ bookingSlice";
+import { bookingFunc, selectBookingState } from "./ bookingSlice";
 import { bookingForm, timeForBooking, weekday } from "./booking-dto";
 
 export const GuestBookingForm:React.FC = () => {
@@ -24,7 +24,10 @@ export const GuestBookingForm:React.FC = () => {
             onSubmit={values => {
                 values.start_time = new Date(today.getFullYear(), today.getMonth(), Number(values.date),Math.round(Number(values.time)/100), Number(values.time)%100 );
                 let {date, time, ...dataReq} = values;
-                console.log(dataReq);
+                // console.log(values);
+                // console.log(dataReq);
+                dispatch(bookingFunc(dataReq));
+
             }}
             >
             {({ errors, touched,values }) => (
@@ -73,7 +76,7 @@ export const GuestBookingForm:React.FC = () => {
                                                 <label key={service.service_id} className=" col-lg-6 col-md-6 text-center">
                                                     <div className="service-item border border-dark rounded mb-3">
                                                         <div className="service-img">
-                                                            <img className='service-img-size' src= {`http://localhost:8000/${service.image}`} alt="Image"/>
+                                                            <img className='service-img-size' src= {`${process.env.REACT_APP_SERVER_URL}${service.image}`} alt="Image"/>
                                                         </div>
                                                         <h5 className=" text-left m-2 pb-2 mb-3">{service.name}</h5>
                                                         <p className='text-dark font-weight-lighter text-left m-2'>
@@ -102,7 +105,7 @@ export const GuestBookingForm:React.FC = () => {
                             return (
                                 <label key={item.user_id} className="team-item mb-0">
                                     <div className="team-img mr-4" style={{width: 200}}>
-                                        <img className='w-100' src={`http://localhost:8000/${item.avatar}`} alt="Team Image"/>
+                                        <img className='w-100' src={`${process.env.REACT_APP_SERVER_URL}${item.avatar}`} alt="Team Image"/>
                                     </div>
                                     <div className="team-text team-text-mg p-0">
                                         <p>{item.fullname}</p>
@@ -128,7 +131,7 @@ export const GuestBookingForm:React.FC = () => {
                             weekDay.map((item, index) => {
                                 return (
                                     <option key={index} value={`${today.getDate() + index}`}>
-                                        {weekday[(today.getDay()+index)%7]}
+                                        {`${weekday[(today.getDay()+index)%7]} (${today.getDate()+index}/${today.getMonth()+1})`}
                                     </option>
                                 )
                             })
@@ -145,7 +148,7 @@ export const GuestBookingForm:React.FC = () => {
                             if(item >= today.getHours()*100 + today.getMinutes()) {
                                 return (
                                     <option key={index} value={
-                                        `${today.getDate() + index}`
+                                        item
                                         // `${new Date(today.getFullYear(), today.getDate(), )}`
                                     }>
                                         {item%100 === 0 ?

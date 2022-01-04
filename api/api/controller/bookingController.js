@@ -106,12 +106,9 @@ exports.create = (req, res, next) => {
         });
       })
       .catch((err) => {
-        res.send({
-          error: {
-            status: err.status || 500,
+        res.status(err.status || 500).send({
             message: err.message,
-          },
-        });
+          });
       });
   } catch (err) {
     return next(err);

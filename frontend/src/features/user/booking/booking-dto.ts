@@ -6,15 +6,10 @@ export interface guestBookingInfo {
     description: string,
 }
 
-export interface bookingForm {
-    contact: string,
-    phone: string,
-    stylist: string,
+export interface bookingForm extends bookingFormRequest {
     service: string [],
-    description: string,
     date?: string,
     time?: string,
-    start_time:Date | null,
 }
 
 export interface bookingState {
@@ -23,6 +18,13 @@ export interface bookingState {
     bookingform: bookingForm
 }
 
+export interface bookingFormRequest {
+    contact: string,
+    phone: string,
+    stylist: string,
+    description: string,
+    start_time:Date | null,
+}
 
 //time for booking from 8h to 20h30 8h= 800 8h30 = 830
 export const timeForBooking =[

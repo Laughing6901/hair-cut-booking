@@ -1,11 +1,9 @@
-import { loginInfo } from "../features/auth/login/login-dto";
+import { bookingFormRequest } from "../features/user/booking/booking-dto";
 import axiosClient from "./axios-client";
 
-
-
 export const bookingApi = {
-    booking: (params:loginInfo) => {
-        let url = `booking`;
+    createBooking: (params:bookingFormRequest) => {
+        let url = `bookings/create`;
         return axiosClient.post(url, params);
     }
 }

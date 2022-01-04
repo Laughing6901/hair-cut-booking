@@ -20,7 +20,7 @@ export const ServiceBody: React.FC = () => {
                             <div key={item.cate_id} className="col-lg-4 col-md-6">
                                 <div className="service-item">
                                     <div className="service-img">
-                                        <img src= {`http://localhost:8000/${item.image_cate}`} alt="Image"/>
+                                        <img src= {`${process.env.REACT_APP_SERVER_URL}${item.image_cate}`} alt="Image"/>
                                     </div>
                                     <h3>{item.name}</h3>
                                     <p>

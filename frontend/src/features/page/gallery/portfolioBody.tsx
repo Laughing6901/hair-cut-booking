@@ -29,10 +29,10 @@ export const PortfolioBody: React.FC = () => {
                 <div className="row portfolio-container">
                     {listService.map((item) => {
                         return (
-                            <div className={`col-lg-4 col-md-6 col-sm-12 portfolio-item ${listArray[item.cate_id-1]}`}>
+                            <div key={item.cate_id} className={`col-lg-4 col-md-6 col-sm-12 portfolio-item ${listArray[item.cate_id-1]}`}>
                                 <div className="portfolio-wrap">
-                                    <a href={`http://localhost:8000/${item.image_cate}`} data-lightbox="portfolio">
-                                        <img src={`http://localhost:8000/${item.image_cate}`}alt="Portfolio Image" />
+                                    <a href={`${process.env.REACT_APP_SERVER_URL}${item.image_cate}`} data-lightbox="portfolio">
+                                        <img src={`${process.env.REACT_APP_SERVER_URL}${item.image_cate}`}alt="Portfolio Image" />
                                     </a>
                                 </div>
                             </div>

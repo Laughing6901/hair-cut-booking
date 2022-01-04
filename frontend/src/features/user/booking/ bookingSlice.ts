@@ -1,10 +1,19 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { bookingApi } from "../../../api/booking-api";
 import { RootState } from "../../../app/store";
 import { bookingForm, bookingState } from "./booking-dto";
 
 export const bookingFunc = createAsyncThunk (
     'booking/bookingFunc', async(params:bookingForm, thunkApi ) => {
-
+        let {service, ...bookingInfoRequest} = params
+        const response: any = await bookingApi.createBooking(bookingInfoRequest);
+        console.log(response);
+        if (response.statusCode >300) {
+            return thunkApi.rejectWithValue(response.message);
+        }
+        // thunkApi.dispatch(setAccount(response.Account));
+      // The value we return becomes the `fulfilled` action payload
+      return response;
     }
 )
 
@@ -44,6 +53,7 @@ export const bookingSlice = createSlice({
             state.state = 'idle';
             state.msg = action.payload.message;
             //set data from data response from server
+            window.alert("đặt lịch thành công");
         })
     }
 })

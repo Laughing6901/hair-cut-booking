@@ -1,7 +1,11 @@
 import axios from 'axios';
+// import * as dotenv from 'dotenv';
+
+// dotenv.config()
+
 
 const axiosClient = axios.create({
-    baseURL: "http://localhost:8000/",
+    baseURL: process.env.REACT_APP_SERVER_URL,
     headers: {
         'content-type': 'application/json',
     },
