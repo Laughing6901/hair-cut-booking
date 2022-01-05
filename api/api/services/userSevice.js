@@ -118,6 +118,17 @@ exports.getbyID = async(id)=>{
      };
 };
 
+exports.updateStylist=async(id,userUpdate)=>{
+   const Id= await models.users.findOne({where:{user_id:id}});
+   if(!Id){
+       return Promise.resolve({
+          message: messageConstants.USER_ID_NOT_FOUND ,
+       });
+    }else{
+   return models.users.update(userUpdate,{where:{user_id:id}});
+   };
+ };
+
 //  Deleted fake
 exports. delete=async (id,options)=>{
     return models.users.update(options,{where:{user_id:id,deleted:0}});

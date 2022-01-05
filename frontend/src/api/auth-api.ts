@@ -7,5 +7,9 @@ export const authApi = {
     login: (params:loginInfo) => {
         let url = `users/login`;
         return axiosClient.post(url, params);
+    },
+    getUserInfo: (params: number) => {
+        let url = 'users/'+params;
+        return (axiosClient.get(url));
     }
 }

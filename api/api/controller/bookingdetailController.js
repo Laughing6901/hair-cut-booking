@@ -88,15 +88,16 @@ exports.create = (req, res, next) => {
     const booking_detail = {
       booking_id: req.body.booking_id,
       service_id: req.body.service_id,
-      price: req.body.price,
-      description: req.body.description,
-      status: req.body.status,
-      delete: req.body.delete,
-      end_time: req.body.end_time,
-      created_by: req.body.created_by,
+      // price: req.body.price,
+      // description: req.body.description,
+      // status: req.body.status,
+      // delete: req.body.delete,
+      // end_time: req.body.end_time,
+      // created_by: req.body.created_by,
       status: 1,
       deleted: 0,
     };
+    console.log(booking_detail);
     serviceBookingdetail
       .create(booking_detail)
       .then((result) => {

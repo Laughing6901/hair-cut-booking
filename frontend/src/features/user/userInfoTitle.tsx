@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectUserInfo } from "./userInfo";
 
 export const UserTitle:React.FC = () => {
-    const userInfo = useAppSelector(selectUserInfo);
-    const listname: string[] = userInfo.Account.split(" ");
+    const userInfo = useAppSelector(selectUserInfo).userInfo;
+    const listname: string[] = userInfo.fullname.split(" ");
     const name: string = listname[listname.length -1];
     return (
         <div className="nav-item dropdown">

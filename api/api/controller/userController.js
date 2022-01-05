@@ -173,6 +173,50 @@ exports.update =async (req, res, next) => {
 }
 };
 
+//update stylist status
+exports.updateStylistStatus =async (req, res, next) => {
+  try{
+  const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.status(422).json({ errors: errors.array() });
+        return;
+      }
+      const  id =  req.params.id;
+      console.log(id);
+      const userUpdate= {
+        status: req.body.status,
+        updated_date:new Date(Date.now()),
+      }
+      console.log(userUpdate);
+      userService.updateStylist(id,userUpdate).then( async(result)=>{
+        if(result==true){
+          const data= await models.users.findOne({
+            where: {user_id:req.params.id}
+          });
+          console.log(data);
+           res.status(200).json({
+            success: true,
+           message: messageConstants.USER_UPDATE_SUSSCESS,
+           userUpdate : data
+           });
+        }else{
+           res.status(500).json({
+             message: result.message,
+           })
+        }
+     }).catch(err =>{
+        res.send({
+          error:{
+            status: err.status ||500,
+            message: err.message
+                 },
+           })
+     });
+}catch(err) {
+  return next(err)
+}
+};
+
 //Soft delete
 exports.delete =function(req,res,next){
   try{

@@ -5,11 +5,13 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { bookingValidate } from "../../auth/validation/bookingValidate";
 import { selectBarberState } from '../../page/barber/barberSlice';
 import { selectCategoryState } from "../../page/service/category";
-import { bookingFunc, selectBookingState } from "./ bookingSlice";
+import { selectUserInfo } from '../userInfo';
+import { createBooking, selectBookingState } from "./ bookingSlice";
 import { bookingForm, timeForBooking, weekday } from "./booking-dto";
 
 export const GuestBookingForm:React.FC = () => {
     const bookingState = useAppSelector(selectBookingState);
+    const userInfo = useAppSelector(selectUserInfo).userInfo;
     const categories = useAppSelector(selectCategoryState).categories;
     const listBarber = useAppSelector(selectBarberState).listBarber;
     const timeBooking = timeForBooking;
@@ -22,11 +24,12 @@ export const GuestBookingForm:React.FC = () => {
             initialValues={initialValues}
             validationSchema={bookingValidate}
             onSubmit={values => {
+                userInfo.user_id === 0 ? values.user_id = null : values.user_id = userInfo.user_id;
                 values.start_time = new Date(today.getFullYear(), today.getMonth(), Number(values.date),Math.round(Number(values.time)/100), Number(values.time)%100 );
                 let {date, time, ...dataReq} = values;
                 // console.log(values);
                 // console.log(dataReq);
-                dispatch(bookingFunc(dataReq));
+                dispatch(createBooking(dataReq));
 
             }}
             >
@@ -53,7 +56,7 @@ export const GuestBookingForm:React.FC = () => {
                             <div>{errors.phone}</div>
                         ) : null}
                     </div>
-                    <Field name="phone" className="col-sm-10 mb-2 booking-input login-input" placeholder = "your phone number"/>
+                    <Field name="phone" value= {values.phone} className="col-sm-10 mb-2 booking-input login-input" placeholder = "your phone number"/>
 
                     <div className="col-sm-10 text-left px-0">
                         <h5 className="font-weight-bold">Choose Service</h5>
@@ -102,8 +105,9 @@ export const GuestBookingForm:React.FC = () => {
                     <Popup className='stylist' trigger={<button type="button" className="col-sm-10 mb-2 login-input booking-input text-left bg-white p-2"> <i className="fas fa-user-tie"></i> {`Stylist >`} </button>}  modal>
                         <div className='team d-flex pt-3 mx-3'>
                         {listBarber.map((item) => {
-                            return (
-                                <label key={item.user_id} className="team-item mb-0">
+                            if(Number(item.status) !== 0) {
+                                return (
+                                    <label key={item.user_id} className="team-item mb-0">
                                     <div className="team-img mr-4" style={{width: 200}}>
                                         <img className='w-100' src={`${process.env.REACT_APP_SERVER_URL}${item.avatar}`} alt="Team Image"/>
                                     </div>
@@ -115,6 +119,7 @@ export const GuestBookingForm:React.FC = () => {
                                     </div>
                                 </label>
                             )
+                        }
                         })}
                     </div>
                     </Popup>

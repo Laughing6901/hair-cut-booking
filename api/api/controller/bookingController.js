@@ -86,6 +86,7 @@ exports.create = (req, res, next) => {
       return;
     }
     const booking = {
+      user_id: req.body.user_id,
       start_time: req.body.start_time,
       contact: req.body.contact,
       phone: req.body.phone,

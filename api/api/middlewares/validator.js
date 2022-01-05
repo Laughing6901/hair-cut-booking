@@ -63,7 +63,7 @@ let validateRegisterUser = () => {
 
 let validateBookingdetail = () => {
   return [ 
-      check('price', 'price does not Empty').not().isEmpty(),
+      check('service_id', 'service_id does not Empty').not().isEmpty(),
       check('booking_id', 'booking_id does not Empty').not().isEmpty(),
   ]; 
 }

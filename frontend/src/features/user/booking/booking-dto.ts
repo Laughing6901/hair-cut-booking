@@ -19,12 +19,24 @@ export interface bookingState {
 }
 
 export interface bookingFormRequest {
+    user_id: number | null,
     contact: string,
     phone: string,
     stylist: string,
     description: string,
     start_time:Date | null,
 }
+
+export interface serviceBookingDetails {
+    booking_id: number,
+    service: string[],
+}
+
+export interface serviceBookingRequest {
+    booking_id: number,
+    service_id: number,
+}
+
 
 //time for booking from 8h to 20h30 8h= 800 8h30 = 830
 export const timeForBooking =[
