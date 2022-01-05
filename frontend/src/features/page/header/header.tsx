@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { useAppSelector } from "../../../app/hooks";
+import { AuthLayout } from "../../auth/layoutAuth";
 import { Login } from "../../auth/login/login";
 import { selectLoginState } from "../../auth/login/loginSlice";
 import { UserTitle } from "../../user/userInfoTitle";
@@ -60,7 +61,7 @@ export const Header:React.FC = () => {
                             )
                         } 
                         )}
-                        {loginState.msg === "USER_LOGIN_SUSSCESS"? <UserTitle />:<Login /> }
+                        {loginState.msg === "USER_LOGIN_SUSSCESS"? <UserTitle />:<AuthLayout /> }
                     </div>
                 </div>
             </div>

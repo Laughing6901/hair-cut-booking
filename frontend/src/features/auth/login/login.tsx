@@ -3,11 +3,10 @@ import React, { useRef } from "react";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { setPage } from '../layoutSlice';
 import { loginValidate } from "../validation/loginValidate";
 import { loginState, RefObject } from "./login-dto";
 import { loginFunction, selectLoginState } from "./loginSlice";
-
-
 
 export const Login: React.FC = () => {
     const ref = useRef<RefObject>(null);
@@ -43,14 +42,19 @@ export const Login: React.FC = () => {
                         ) : null}
                     </div>
                     <Field name="password" type= "password"className="col-sm-10 mb-4 login-input" placeholder = "password"/>
-                        <button className="col-sm-10 mb-3 mt-2 btn btn-submit font-weight-bold" type="submit">
-                            <span>{loginState.state === 'pending' ? 
-                            <i className="fas fa-spinner fa-spin"></i> : <></>}</span>
-                            SUBMIT
-                        </button>
+                    <button className="col-sm-10 mb-3 mt-2 btn btn-submit font-weight-bold" type="submit">
+                        <span>{loginState.state === 'pending' ? 
+                        <i className="fas fa-spinner fa-spin"></i> : <></>}</span>
+                        SUBMIT
+                    </button>
+                    <p className=''>Dont have account? 
+                        <button className='btn m-0 p-0 font-weight-bold text-white'
+                         onClick={() => dispatch(setPage('register'))}>Register here</button>
+                    </p>
                 </Form>
             )}
             </Formik>
+
         </Popup>
     )
 }
