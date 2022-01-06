@@ -47,3 +47,8 @@ export interface bookingState {
     listBookingInfo: listBookingInfo,
     msg: string,
 }
+
+export interface updateStatusBooking {
+    booking_id: number,
+    status: number 
+}

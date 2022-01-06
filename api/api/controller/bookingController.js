@@ -178,6 +178,39 @@ exports.update = (req, res, next) => {
   }
 };
 
+exports.updateBookingStatus = (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(422).json({ errors: errors.array() });
+      return;
+    }
+    const id = req.body.booking_id;
+    const bookingUpdate = {
+      status: req.body.status,
+      updated_date: Date(),
+    };
+    serviceBooking
+      .update(id, bookingUpdate)
+      .then((result) => {
+        res.status(200).json({
+          success: true,
+          message: messageConstants.BOOKING_UPDATE_SUSSCESS,
+        });
+      })
+      .catch((err) => {
+        res.send({
+          error: {
+            status: err.status || 500,
+            message: err.message,
+          },
+        });
+      });
+  } catch (err) {
+    return next(err);
+  }
+};
+
 //soft delete
 exports.delete = (req, res) => {
   const id = req.params.id;

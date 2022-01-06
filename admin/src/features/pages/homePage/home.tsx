@@ -18,8 +18,8 @@ export const Home:React.FC = () => {
         dispatch(getBooking());
     }, [])
     return (
-        <>
-        <Header />
+        <>"
+        <Header tab= "home"/>
         <div className="pcoded-main-container">
             <div className="pcoded-wrapper">
                 <div className="pcoded-content">

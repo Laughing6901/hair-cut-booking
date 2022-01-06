@@ -1,16 +1,27 @@
-import React from "react";
-import { useAppSelector } from "../../../../app/hooks";
-import { bookingInfo, listBookingDetails, listBookingInfo, statusStyle, timeForBooking } from "./booking-dto";
-import { ExecuteTotalPrice, selectBookingState } from "./bookingSlice";
-
-
-
+import React, {useEffect} from "react";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import { bookingInfo, listBookingDetails, listBookingInfo, statusStyle, timeForBooking, updateStatusBooking } from "./booking-dto";
+import { ExecuteTotalPrice, getBooking, selectBookingState, updateBookingStatus } from "./bookingSlice";
 
 export const BookingAtTime:React.FC = () => {
     const bookingDetails:listBookingInfo = useAppSelector(selectBookingState).listBookingInfo;
     const timeBooking = timeForBooking;
-    const date = new Date(Date.now());
     const status = statusStyle;
+    const dispatch = useAppDispatch();
+    let date = new Date(Date.now());
+
+    const setDataToUpdate = (bookingId: number, status: number) => {
+        let dataReq:updateStatusBooking = {
+            booking_id: bookingId,
+            status: status
+        }
+        dispatch(updateBookingStatus(dataReq));
+        window.location.reload();
+    }
+
+    useEffect(() => {
+        dispatch(getBooking());
+    }, [])
 
     return (
         <div className="col-xl-8 col-md-12 m-b-30 Recent-Users">
@@ -51,7 +62,6 @@ export const BookingAtTime:React.FC = () => {
                                 <tbody>
                                     {
                                         bookingDetails.map((booking) => {
-
                                             let time = new Date(booking.start_time);
                                             // set current time to compare with time in array to render 
                                             let currTime = time.getHours()*100 + time.getMinutes();
@@ -87,8 +97,18 @@ export const BookingAtTime:React.FC = () => {
                                                     <td>
                                                         {booking.status === 2 ?
                                                         <>
-                                                            <a href="#!" className="label theme-bg2 text-white f-12">Reject</a>
-                                                            <a href="#!" className="label theme-bg text-white f-12">Approve</a>
+                                                            <button className="btn label theme-bg2 text-white f-12"
+                                                            onClick={()=> {
+                                                              setDataToUpdate(booking.booking_id, 0)
+                                                            }}>
+                                                                Reject
+                                                            </button>
+
+                                                            <button className="btn label theme-bg text-white f-12" onClick={()=> {
+                                                              setDataToUpdate(booking.booking_id, 1)
+                                                            }}>
+                                                                Approve
+                                                            </button>
                                                          </> : <h6 className={status[booking.status]}>{status[booking.status + 6]}</h6>
                                                          }
                                                         

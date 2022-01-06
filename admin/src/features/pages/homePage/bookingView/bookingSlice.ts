@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { bookingApi } from "../../../../api/booking-api";
 import { RootState } from "../../../../app/store";
-import { bookingState, listBookingDetails } from "./booking-dto";
+import { bookingState, listBookingDetails, updateStatusBooking } from "./booking-dto";
 
 export const ExecuteTotalPrice = (details: listBookingDetails) => {
     let totalPrice = 0;
@@ -16,6 +16,19 @@ const initialState:bookingState = {
     msg: '',
     listBookingInfo: [],
 }
+
+export const updateBookingStatus = createAsyncThunk(
+    'booking/updateStatusBooking', async(params:updateStatusBooking, thunkApi) => {
+        console.log(params);
+        const response: any = await bookingApi.updateStatus(params);
+        console.log(response);
+        if (response.statusCode >300) {
+            return thunkApi.rejectWithValue(response.message);
+        }
+    //   The value we return becomes the `fulfilled` action payload
+      return response;
+    }
+)
 
 export const getBooking = createAsyncThunk(
     'booking/getBooking', async(params, thunkApi) => {
@@ -51,6 +64,19 @@ export const BookingSlice = createSlice({
             //get token from data response from server
             state.msg = action.payload.message;
             state.listBookingInfo = action.payload.data.rows;
+        })
+        .addCase(updateBookingStatus.pending, (state) => {
+            state.state ='pending';
+        })
+        .addCase(updateBookingStatus.rejected, (state, action: PayloadAction<any>) => {
+            console.log("in here");
+            state.state ='failed';
+            state.msg = action.payload;
+        })
+        .addCase(updateBookingStatus.fulfilled, (state, action: PayloadAction<any>) => {
+            state.state = 'idle';
+            //get token from data response from server
+            state.msg = action.payload.message;
         })
     } 
 })

@@ -2,10 +2,14 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks"
 import { selectLoginState, setToken } from "../../auth/login/loginSlice";
 import { Link, useNavigate } from 'react-router-dom';
 
-export const Header: React.FC = () => {
+export type tabPage = {
+    tab: string
+}
+
+export const Header: React.FC<tabPage> = ({tab}) => {
     const dispatch = useAppDispatch();
-    let navigate = useNavigate();
     const Account = useAppSelector(selectLoginState).Account;
+    let navigate = useNavigate();
     return (
         <>
         <nav className="pcoded-navbar">
@@ -24,13 +28,13 @@ export const Header: React.FC = () => {
                     <li className="nav-item pcoded-menu-caption text-left">
                         <label>Navigation</label>
                     </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" className="nav-item active">
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" className={tab=== "home" ? "nav-item active" : "nav-item"}>
                         <Link to="/" className="nav-link "><span className="pcoded-micon"><i className="feather icon-home"></i></span><span className="pcoded-mtext">Dashboard</span></Link>
                     </li>
                     <li className="nav-item pcoded-menu-caption text-left">
                         <label>Create New Customer</label>
                     </li>
-                    <li data-username="form elements advance componant validation masking wizard picker select" className="nav-item">
+                    <li data-username="form elements advance componant validation masking wizard picker select" className={tab=== "signin" ? "nav-item active" : "nav-item"}>
                         <Link to ="/create" className="nav-link "><span className="pcoded-micon"><i className="feather icon-file-text"></i></span><span className="pcoded-mtext">Register Form</span></Link>
                     </li>
                 </ul>
