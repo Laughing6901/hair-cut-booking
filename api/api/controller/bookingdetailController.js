@@ -2,6 +2,7 @@ const serviceBookingdetail = require("../services/booking_detailService");
 const { validationResult } = require("express-validator");
 const messageConstants = require("../constant/messageConstants");
 const Paginator = require("../commons/Paginator");
+const serviceSer = require("../services/serviceService");
 
 //get-all
 exports.getAll = (req, res) => {
@@ -78,18 +79,19 @@ exports.getById = (req, res) => {
 };
 
 //create
-exports.create = (req, res, next) => {
+exports.create = async (req, res, next) => {
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(402).json({ errors: errors.array() });
       return;
     }
+    let service = await serviceSer.getByid(req.body.service_id);
     const booking_detail = {
       booking_id: req.body.booking_id,
       service_id: req.body.service_id,
-      // price: req.body.price,
-      // description: req.body.description,
+      price: service.price,
+      description: service.name,
       // status: req.body.status,
       // delete: req.body.delete,
       // end_time: req.body.end_time,

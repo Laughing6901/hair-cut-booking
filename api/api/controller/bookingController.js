@@ -24,6 +24,27 @@ exports.getAll = (req, res) => {
     });
 };
 
+//get all booking and service
+exports.getAllBookingAndService = (req, res) => {
+  serviceBooking
+  .getAllBookingAndService()
+  .then((data) => {
+    res.status(200).json({
+      success: true,
+      message: messageConstants.BOOKING_NOT_FOUND,
+      data: data,
+    });
+  })
+  .catch((err) => {
+    res.send({
+      error: {
+        status: err.status || 500,
+        message: err.message,
+      },
+    });
+  });
+};
+
 //get all paging
 exports.getAllpaging = async (req, res) => {
   const page = parseInt(req.query.page) || 1;

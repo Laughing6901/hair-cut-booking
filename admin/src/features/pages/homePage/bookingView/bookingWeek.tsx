@@ -1,6 +1,8 @@
 import React from "react";
+import { weekday } from "./booking-dto";
 
 export const BookingWeek: React.FC = () => {
+    const weekTime = weekday;
     return (
         <div className="col-xl-8 col-md-12 m-b-30">
             <ul className="nav nav-tabs" id="myTab" role="tablist">

@@ -6,6 +6,21 @@ exports.getAll = () => {
     return models.booking.findAndCountAll({where: {deleted: false}});
 };
 
+exports.getAllBookingAndService = () => {
+    return models.booking.findAndCountAll(
+        {
+            attributes: ["booking_id","start_time","contact","phone","description","status"],
+            where: {deleted: false},
+            include: [
+                {
+                    model: models.booking_detail,
+                    attributes: ["booking_detail_id", "service_id", "price", "description"]
+                },
+            ]
+        }
+    );
+};
+
 //get-all-paging
 exports.getAllpaging = (searchViewModel) => {
     limit = searchViewModel.limit;

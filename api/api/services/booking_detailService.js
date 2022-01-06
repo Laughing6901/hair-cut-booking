@@ -65,10 +65,6 @@ exports.getBooking = () => {
         model: models.booking,
         attributes:['booking_id','price','description','status']
     }]
-    //     include: [{
-    //         models: models.service,
-    //         attributes: ["id", "service_name", "image_service", "price", "description", "cate_id"]
-    //     }]
     })
 }
 

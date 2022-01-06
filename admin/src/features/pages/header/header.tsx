@@ -32,14 +32,6 @@ export const Header: React.FC = () => {
                     <li data-username="form elements advance componant validation masking wizard picker select" className="nav-item">
                         <Link to ="/create" className="nav-link "><span className="pcoded-micon"><i className="feather icon-file-text"></i></span><span className="pcoded-mtext">Register Form</span></Link>
                     </li>
-                    <li className="nav-item pcoded-menu-caption text-left">
-                        <label>Chart & Maps</label>
-                    </li>
-                    <li data-username="Charts Morris" className="nav-item"><a href="chart-morris.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-pie-chart"></i></span><span className="pcoded-mtext">Chart</span></a></li>
-                    <li data-username="Maps Google" className="nav-item"><a href="map-google.html" className="nav-link "><span className="pcoded-micon"><i className="feather icon-map"></i></span><span className="pcoded-mtext">Maps</span></a></li>
-
-                    <li data-username="Sample Page" className="nav-item"><a href="sample-page.html" className="nav-link"><span className="pcoded-micon"><i className="feather icon-sidebar"></i></span><span className="pcoded-mtext">Sample page</span></a></li>
-                    <li data-username="Disabled Menu" className="nav-item disabled"><a href="javascript:" className="nav-link"><span className="pcoded-micon"><i className="feather icon-power"></i></span><span className="pcoded-mtext">Disabled menu</span></a></li>
                 </ul>
             </div>
         </div>

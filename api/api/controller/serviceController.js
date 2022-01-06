@@ -78,6 +78,33 @@ exports.getById = (req, res) => {
     });
 };
 
+exports.getServiceById = (req, res) => {
+  serviceSer
+    .getServiceByid(req.params.id)
+    .then((service) => {
+      if (service === null) {
+        res.status(200).json({
+          message: messageConstants.SERVICE_FOUND,
+        });
+      } else {
+        res.status(404).json({
+          success: true,
+          message: messageConstants.SERVICE_NOT_FOUND,
+          service: service,
+        });
+      }
+    })
+    .catch((err) => {
+      res.send({
+        error: {
+          status: err.status || 500,
+          message: err.message,
+        },
+      });
+    });
+};
+
+
 //create
 exports.create = async (req, res, next) => {
   try {

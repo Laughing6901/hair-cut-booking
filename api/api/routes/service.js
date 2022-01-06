@@ -7,6 +7,7 @@ router.get("/", serController.getAll);
 router.get("/all-paging", serController.getAllpaging);
 router.get("/get-cate", serController.getCate);
 router.get("/get-by-id/:id", serController.getById);
+router.get("/:id", serController.getServiceById);
 router.post("/create", serController.create);
 router.put("/update/:id", serController.update);
 router.delete("/delete/:id", serController.delete);

@@ -12,7 +12,7 @@ import { registerFunction, selectRegisterState } from './registerSlice';
 
 export const Register: React.FC = () => {
     const ref = useRef<RefObject>(null);
-    const loginState: registerState = useAppSelector(selectRegisterState);
+    const registerState: registerState = useAppSelector(selectRegisterState);
     const initialValues: registerInfo = registerInit;
     const dispatch = useAppDispatch();
     return (
@@ -75,7 +75,7 @@ export const Register: React.FC = () => {
                     <Field type="file" name="avatar" className = "col-sm-10 mt-2 pt-1 mb-4 login-input"  placeholder = "username"/>
 
                         <button className="col-sm-10 mb-3 mt-2 btn btn-submit font-weight-bold" type="submit">
-                            <span>{loginState.state === 'pending' ? 
+                            <span>{registerState.state === 'pending' ? 
                             <i className="fas fa-spinner fa-spin"></i> : <></>}</span>
                             SUBMIT
                         </button>

@@ -1,18 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { AdminLogin } from "../../auth/login/login";
+import { selectLoginState } from '../../auth/login/loginSlice';
 import { Header } from "../header/header";
-import { BookingWeek } from "./bookingView/bookingWeek";
 import { BookingAtTime } from "./bookingView/bookingAtTime";
+import { getBooking } from "./bookingView/bookingSlice";
+import { BookingWeek } from "./bookingView/bookingWeek";
 import { RatingList } from "./chart/rating";
 import { SocialLike } from "./chart/totalLike";
 import { YearChart } from "./chart/yearChart";
 import { DailySale } from "./sale/dailySale";
 import { MonthlySale } from "./sale/monthlySale";
 import { YearlySale } from "./sale/yearlySale";
-import { AdminLogin } from "../../auth/login/login";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { selectLoginState, setToken } from '../../auth/login/loginSlice';
 
 export const Home:React.FC = () => {
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(getBooking());
+    }, [])
     return (
         <>
         <Header />
@@ -28,7 +33,6 @@ export const Home:React.FC = () => {
                                     <YearlySale />
                                     <BookingAtTime />
                                     <YearChart />
-                                    <SocialLike />
                                     <RatingList />
                                     <BookingWeek />
                                 </div>

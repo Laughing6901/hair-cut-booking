@@ -29,6 +29,13 @@ exports.getByid = async (id) => {
     return models.service.findOne({where: {service_id: id}});
 };
 
+exports.getServiceByid = async (id) => {
+    return models.service.findOne({
+        attributes:["service_id","name", "price", "status"],
+        where: {service_id: id}
+    });
+};
+
 
 //create
 exports.create = async (service) => {

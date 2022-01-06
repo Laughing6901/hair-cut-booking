@@ -4,6 +4,7 @@ const bookingController = require("../controller/bookingController");
 const { validate } = require("../middlewares/validator");
 
 router.get("/", bookingController.getAll);
+router.get("/bookingdetails", bookingController.getAllBookingAndService);
 router.get("/all-paging", bookingController.getAllpaging);
 router.get("/get-by-id/:id", bookingController.getById);
 router.post("/create", bookingController.create);

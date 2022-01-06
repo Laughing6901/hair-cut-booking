@@ -31,7 +31,7 @@ export const createBooking = createAsyncThunk (
             booking_id: response.booking.booking_id,
         }
         thunkApi.dispatch(createBookingDetail(serviceBookingDetails));
-        thunkApi.dispatch(updateStylist(Number(params.stylist)));
+        // thunkApi.dispatch(updateStylist(Number(params.stylist)));
       // The value we return becomes the `fulfilled` action payload
       return response;
     }
@@ -94,6 +94,7 @@ export const bookingSlice = createSlice({
             state.state = 'idle';
             state.msg = action.payload.message;
             //set data from data response from server
+            window.alert("đặt lịch thành công");
         })
         //booking service
         .addCase(createBookingDetail.pending, (state) => {

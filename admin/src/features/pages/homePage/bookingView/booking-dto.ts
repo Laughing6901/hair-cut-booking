@@ -1,0 +1,47 @@
+
+
+export interface bookingDetails {
+    booking_details_id: number,
+    service_id: number,
+    price: string,
+    description: string,
+}
+export type listBookingDetails = bookingDetails[]
+export interface serviceDetails {
+    service_id: number,
+    name : string,
+    image: string,
+    price: string,
+    status: number,
+    description: string,
+    category: {
+        cate_id: number,
+        name: string
+    }
+}
+
+export type listServiceDetails = serviceDetails[]
+
+export const timeForBooking = [
+    800,830,900,930,1000,1030,1100,1130,1300,1330,1400,1430,1500,1530,1600,1630,1700,1730,1800,1830,1900,1930,2000,2030,
+]
+
+export const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+export interface bookingInfo {
+    booking_id: number,
+    start_time: string,
+    contact: string,
+    phone: string,
+    description: string,
+    status: number,
+    bookingdetails: listBookingDetails,
+}
+
+export type listBookingInfo = bookingInfo[];
+
+export interface bookingState {
+    state: 'idle' | 'pending' | 'failed',
+    listBookingInfo: listBookingInfo,
+    msg: string,
+}

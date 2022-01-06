@@ -65,6 +65,9 @@ body {
   background: #f4f7fa !important;
   position: relative !important;
 }
+body ::-webkit-scrollbar {
+  display: none;
+}
 
 *:focus {
   outline: none;
