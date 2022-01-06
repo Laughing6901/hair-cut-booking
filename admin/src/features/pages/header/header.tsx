@@ -1,10 +1,11 @@
-import { useAppDispatch } from "../../../app/hooks"
-import { setToken } from "../../auth/login/loginSlice";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks"
+import { selectLoginState, setToken } from "../../auth/login/loginSlice";
 import { Link, useNavigate } from 'react-router-dom';
 
 export const Header: React.FC = () => {
     const dispatch = useAppDispatch();
     let navigate = useNavigate();
+    const Account = useAppSelector(selectLoginState).Account;
     return (
         <>
         <nav className="pcoded-navbar">
@@ -135,7 +136,7 @@ export const Header: React.FC = () => {
                         <div className="dropdown-menu dropdown-menu-right profile-notification">
                             <div className="pro-head">
                                 <img src="assets/images/user/avatar-1.jpg" className="img-radius" alt="User-Profile-Image"/>
-                                <span>John Doe</span>
+                                <span>{Account}</span>
                                 <button  className=" btn dud-logout" title="Logout" onClick={() => {
                                     dispatch(setToken(''));
                                     sessionStorage.removeItem("token");

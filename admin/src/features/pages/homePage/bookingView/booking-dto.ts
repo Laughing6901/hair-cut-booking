@@ -28,6 +28,8 @@ export const timeForBooking = [
 
 export const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 
+export const statusStyle = ["m-0 text-c-red","m-0 text-c-green", "m-0 text-c-purple","fas fa-circle text-c-red f-10","fas fa-circle text-c-green f-10","fas fa-circle text-c-purple f-10", "Reject", "Done", "Pending" ]
+
 export interface bookingInfo {
     booking_id: number,
     start_time: string,

@@ -114,7 +114,7 @@ exports.create = (req, res, next) => {
       description: req.body.description,
       end_time: req.body.end_time,
       created_by: req.body.created_by,
-      status: 1,
+      status: 2,
       deleted: 0,
     };
     console.log(booking);

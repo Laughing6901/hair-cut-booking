@@ -19,7 +19,8 @@ export const adminLogin = createAsyncThunk(
 const initialState:loginState = {
     state:'idle',
     msg: '',
-    token:''
+    token:'',
+    Account:'',
 }
 
 export const LoginSlice = createSlice({
@@ -46,6 +47,7 @@ export const LoginSlice = createSlice({
             //get token from data response from server
             state.msg = action.payload.message;
             state.token = action.payload.Token.accessToken;
+            state.Account = action.payload.Account;
             window.alert(action.payload.message);
             sessionStorage.setItem("token",action.payload.Token.accessToken);
         })

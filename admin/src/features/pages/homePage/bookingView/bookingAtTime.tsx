@@ -1,7 +1,8 @@
 import React from "react";
 import { useAppSelector } from "../../../../app/hooks";
-import { bookingInfo, listBookingDetails, listBookingInfo, timeForBooking } from "./booking-dto";
-import { selectBookingState } from "./bookingSlice";
+import { bookingInfo, listBookingDetails, listBookingInfo, statusStyle, timeForBooking } from "./booking-dto";
+import { ExecuteTotalPrice, selectBookingState } from "./bookingSlice";
+
 
 
 
@@ -9,7 +10,7 @@ export const BookingAtTime:React.FC = () => {
     const bookingDetails:listBookingInfo = useAppSelector(selectBookingState).listBookingInfo;
     const timeBooking = timeForBooking;
     const date = new Date(Date.now());
-
+    const status = statusStyle;
 
     return (
         <div className="col-xl-8 col-md-12 m-b-30 Recent-Users">
@@ -17,12 +18,12 @@ export const BookingAtTime:React.FC = () => {
                 {
                     timeBooking.map((item, index) => {
                         let time = JSON.stringify(item).split("");
-                        let now = new Date(Date.now()).getHours();
+                        // let now = new Date(Date.now()).getHours();
                         time.splice(-2,0, ":");
                         return (
                             <li key={item} className="nav-item">
-                                <a className="nav-link" id="home-tab" data-toggle="tab" href={`#${item}`} role="tab" aria-controls= {`${item}`} 
-                                aria-selected= "false">
+                                <a className={item/100 === date.getHours() ? "nav-link active show" : "nav-link"} id="home-tab" data-toggle="tab" href={`#${item}`} role="tab" aria-controls= {`${item}`} 
+                                aria-selected= {item/100 === date.getHours() ? "true" : "false"}>
                                     {time.join("")}
                                 </a>
                             </li>
@@ -34,7 +35,7 @@ export const BookingAtTime:React.FC = () => {
             {
                 timeBooking.map((item,index) => {
                     return (
-                        <div key={index} className="tab-pane fade" id={`${item}`} role="tabpanel" aria-labelledby="home-tab">
+                        <div key={index} className={item/100 === date.getHours() ? "tab-pane fade active show" : "tab-pane fade"} id={`${item}`} role="tabpanel" aria-labelledby="home-tab">
                             <table className="table table-hover">
                                 <thead>
                                     <tr>
@@ -69,9 +70,9 @@ export const BookingAtTime:React.FC = () => {
                                                         <h6 className="m-0">{booking.phone}</h6>
                                                     </td>
                                                     <td>
-                                                        {booking.bookingdetails.map(serviceName => {
+                                                        {booking.bookingdetails.map((serviceName,id) => {
                                                             return (
-                                                                <h6 className="m-0">
+                                                                <h6 key={id} className="m-0">
                                                                     {serviceName.description}
                                                                 </h6>
                                                             )
@@ -79,17 +80,19 @@ export const BookingAtTime:React.FC = () => {
                                                     </td>
                                                     <td>
                                                         <h6 className="m-0">
-                                                            {booking.bookingdetails.map(servicePrice => { 
-                                                                return (
-                                                                    <h6 className="m-0">
-                                                                        {Number(servicePrice.price)/1000}K
-                                                                    </h6>
-                                                                )
-                                                            })}
+                                                            {ExecuteTotalPrice(booking.bookingdetails)/1000}K
                                                         </h6>
                                                     </td>
                                                     
-                                                    <td><a href="#!" className="label theme-bg2 text-white f-12">Reject</a><a href="#!" className="label theme-bg text-white f-12">Approve</a></td>
+                                                    <td>
+                                                        {booking.status === 2 ?
+                                                        <>
+                                                            <a href="#!" className="label theme-bg2 text-white f-12">Reject</a>
+                                                            <a href="#!" className="label theme-bg text-white f-12">Approve</a>
+                                                         </> : <h6 className={status[booking.status]}>{status[booking.status + 6]}</h6>
+                                                         }
+                                                        
+                                                    </td>
                                                     <td className="text-right"></td>
                                                 </tr>
                                             )}

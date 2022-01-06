@@ -7,5 +7,6 @@ export interface loginInfo {
 export interface loginState {
     state: 'idle' | 'pending' | 'failed',
     msg: string,
-    token: '',
+    token: string,
+    Account: string,
 }

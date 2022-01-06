@@ -7,7 +7,6 @@ import { BookingAtTime } from "./bookingView/bookingAtTime";
 import { getBooking } from "./bookingView/bookingSlice";
 import { BookingWeek } from "./bookingView/bookingWeek";
 import { RatingList } from "./chart/rating";
-import { SocialLike } from "./chart/totalLike";
 import { YearChart } from "./chart/yearChart";
 import { DailySale } from "./sale/dailySale";
 import { MonthlySale } from "./sale/monthlySale";
