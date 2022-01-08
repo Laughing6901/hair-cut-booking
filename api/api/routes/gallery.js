@@ -20,7 +20,7 @@ router.get("/all-paging", gerController.getAllpaging);
 router.get("/get-cate", gerController.getCate);
 router.get("/get-by-id/:id", gerController.getById);
 router.post("/create",upload.single('image'), gerController.create);
-router.put("/update/:id", validate.validateGallery(), gerController.update);
+router.put("/update/:id",upload.single('image'), validate.validateGallery(), gerController.update);
 router.delete("/delete/:id", gerController.delete);
 router.get("/restore/:id", gerController.restore);
 

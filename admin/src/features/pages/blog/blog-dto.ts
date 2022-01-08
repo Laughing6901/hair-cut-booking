@@ -6,9 +6,10 @@ export interface category {
 export interface blogInfoRequest {
     blog_id: number,
     name: string,
-    image?: any,
+    image_blogs?: any,
     description: string,
-    cate_id: string
+    content: string,
+    comment: []
 }
 
 export interface blogInfoResponse extends blogInfoRequest {

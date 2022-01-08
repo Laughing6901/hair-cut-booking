@@ -13,5 +13,9 @@ export const galleryApi = {
     deleteGallery: (params: any) => {
         let url = `gallery/delete/${params}`;
         return axiosClient.delete(url);
+    },
+    updateGallery: (id:number,params: any) => {
+        let url = `gallery/update/${id}`;
+        return axiosClient.put(url, params);
     }
 }

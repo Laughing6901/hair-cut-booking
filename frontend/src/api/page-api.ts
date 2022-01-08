@@ -15,5 +15,9 @@ export const pageApi = {
     getBarber: () => {
         let url = `users/stylist`;
         return axiosClient.get(url);
+    },
+    getPortfolio: () => {
+        let url = `gallery/`;
+        return axiosClient.get(url);
     }
 }

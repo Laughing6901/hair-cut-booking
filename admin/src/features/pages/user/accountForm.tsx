@@ -38,10 +38,10 @@ export const AccountForm: React.FC<formFunc> = ({ status }) => {
                                 <Form encType="multipart/form-data">
                                     <div className="row">
                                         <div className="col-md-6">
-                                            <div className={status === 'create' ? "d-none" : "form-group"}>
+                                            {/* <div className={status === 'create' ? "d-none" : "form-group"}>
                                                 <label >Account Id</label>
                                                 <Field name="user_id" className="form-control" placeholder="Enter account id" />
-                                            </div>
+                                            </div> */}
                                             <div className="form-group">
                                                 <div className="text-danger" >
                                                     {errors.username && touched.username ? (

@@ -8,7 +8,4 @@ export const blogValidate = Yup.object().shape({
     .min(6, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-    cate_id: Yup.string()
-    .min(1, 'Too Short!')
-    .required('Required'),
 });

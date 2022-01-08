@@ -13,5 +13,9 @@ export const blogApi = {
     deleteBlog: (params: any) => {
         let url = `blogs/delete/${params}`;
         return axiosClient.delete(url);
+    },
+    updateBlog: (id:number,params: any) => {
+        let url = `blogs/update/${id}`;
+        return axiosClient.put(url, params);
     }
 }

@@ -2,36 +2,36 @@ import { Field, Form, Formik } from 'formik';
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { listCateInfoResponse } from "../categories/cate-dto";
 import { selectCateState } from '../categories/categoriesSlice';
-import { serviceInfoRequest, serviceState } from "./service-dto";
-import { createNewService, selectServiceState, updateService } from "./serviceSlice";
-import { serviceValidate } from "./serviceValidate";
+import { galleryInfoRequest, galleryState } from "./gallery-dto";
+import { createNewGallery, selectGalleryState, updateGallery } from "./gallerySlice";
+import { galleryValidate } from "./galleryValidate";
 
 export type formFunc = {
     status: string;
 }
 
-export const ServiceForm: React.FC<formFunc> = ({status}) => {
-    let initialValues: serviceInfoRequest = useAppSelector(selectServiceState).service;
+export const GalleryForm: React.FC<formFunc> = ({status}) => {
+    let initialValues: galleryInfoRequest = useAppSelector(selectGalleryState).gallery;
     const category: listCateInfoResponse = useAppSelector(selectCateState).categories;
     const baseUrl = "http://localhost:8000"
     const dispatch = useAppDispatch();
-    const serviceInfo:serviceState = useAppSelector(selectServiceState);
+    const galleryInfo:galleryState = useAppSelector(selectGalleryState);
     return (
         <div className="row">
             <div className="col-sm-12">
                 <div className="card">
                     <div className="card-header">
-                        <h5>Add Service</h5>
+                        <h5>Add Gallery</h5>
                     </div>
                     <div className="card-body">
                         <h5>Form controls</h5>
                         <hr/>                                                
                         <Formik
                             initialValues={initialValues}
-                            validationSchema={serviceValidate}
+                            validationSchema={galleryValidate}
                             onSubmit={values => {
                                 console.log(values);
-                                status === 'create' ? dispatch(createNewService(values)) : dispatch(updateService(values));
+                                status === 'create' ? dispatch(createNewGallery(values)) : dispatch(updateGallery(values));
                                 
                             }}
                             >
@@ -39,9 +39,9 @@ export const ServiceForm: React.FC<formFunc> = ({status}) => {
                                 <Form encType="multipart/form-data">
                                     <div className="row">
                                         <div className="col-md-6">
-                                            {/* <div className={status === 'create' ? "d-none" : "form-group"}>
-                                                <label >Service Id</label>
-                                                <Field name="service_id" className="form-control" placeholder="Enter service id"/>                                                                            
+                                            {/* <div className={status === 'create' ? "form-group" : "d-none"}>
+                                                <label >Gallery Id</label>
+                                                <Field name="gallery_id" className="form-control" placeholder="Enter gallery id"/>                                                                            
                                             </div> */}
                                             <div className="form-group">
                                                 <div className = "text-danger" >
@@ -49,18 +49,9 @@ export const ServiceForm: React.FC<formFunc> = ({status}) => {
                                                         <div>{errors.name}</div>
                                                     ) : null}
                                                 </div>                                                                            
-                                                <label >Service Name</label>
-                                                <Field name="name" className="form-control"   placeholder="Enter service name"/>                                                                            
-                                            </div>                                                                            
-                                            <div className="form-group">
-                                                <div className = "text-danger" >
-                                                    {errors.price && touched.price ? (
-                                                        <div>{errors.price}</div>
-                                                    ) : null}
-                                                </div>                                                                            
-                                                <label>Service Price</label>
-                                                <Field name="price" className="form-control"  placeholder = "price"/>
-                                            </div>                                                                            
+                                                <label >Gallery Name</label>
+                                                <Field name="name" className="form-control"   placeholder="Enter gallery name"/>                                                                            
+                                            </div>                                                                                                                                                  
                                             <div className="form-group">
                                                 <div className = "text-danger" >
                                                     {errors.description && touched.description ? (
@@ -108,11 +99,6 @@ export const ServiceForm: React.FC<formFunc> = ({status}) => {
                                             </div>
                                             <div className="form-group pb-3">
                                                 <h6 className="font-weight-bold ">
-                                                    Price:
-                                                </h6>
-                                            </div>
-                                            <div className="form-group pb-3">
-                                                <h6 className="font-weight-bold ">
                                                     Description:
                                                 </h6>
                                             </div>
@@ -125,17 +111,12 @@ export const ServiceForm: React.FC<formFunc> = ({status}) => {
                                         <div className="col-md-2">
                                             <div className="form-group pb-3">
                                                 <h6 className="">
-                                                    {values.service_id}
+                                                    {values.gallery_id}
                                                 </h6>
                                             </div>
                                             <div className="form-group pb-3">
                                                 <h6 className="">
                                                     {values.name}
-                                                </h6>
-                                            </div>
-                                            <div className="form-group pb-3">
-                                                <h6 className="">
-                                                    {values.price}
                                                 </h6>
                                             </div>
                                             <div className="form-group pb-3">
@@ -152,7 +133,7 @@ export const ServiceForm: React.FC<formFunc> = ({status}) => {
                                         <div className="text-center col-md-12">
 
                                             <button className="btn btn-primary" type="submit">
-                                                <span>{serviceInfo.state === 'pending' ? 
+                                                <span>{galleryInfo.state === 'pending' ? 
                                                 <i className="fas fa-spinner fa-spin"></i> : <></>}</span>
                                             SUBMIT
                                             </button>

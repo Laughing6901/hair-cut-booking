@@ -85,15 +85,26 @@ exports.create = (req, res, next) => {
       res.status(402).json({ errors: errors.array() });
       return;
     }
+    console.log(req.body);
     const blogs = {
       name: req.body.name,
       description: req.body.description,
       image_blog: req.body.image_blog,
       content: req.body.content,
       created_by: req.body.created_by,
+      created_date: Date(Date.now()),
+      updated_date: Date(Date.now()),
       status: 1,
       deleted: 0,
     };
+    const file = req.file;
+    if(file !== undefined) {
+      console.log(file);
+      file.uploadDir = "/upload/uploads/";
+      let newPath = file.uploadDir + file.originalname;
+      console.log("log new path", newPath);
+      blogs.image = newPath;
+    }
     blogService
       .create(blogs)
       .then((result) => {
@@ -128,11 +139,18 @@ exports.update = (req, res, next) => {
     const blogUpdate = {
       name: req.body.name,
       description: req.body.description,
-      image_blog: req.body.image_blog,
       content: req.body.content,
       updated_by: req.body.updated_by,
       updated_date: Date(),
     };
+    const file = req.file;
+    if(file !== undefined) {
+      console.log(file);
+      file.uploadDir = "/upload/uploads/";
+      let newPath = file.uploadDir + file.originalname;
+      console.log("log new path", newPath);
+      blogUpdate.image = newPath;
+    }
     blogService
       .update(id, blogUpdate)
       .then((result) => {

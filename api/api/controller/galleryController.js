@@ -200,6 +200,14 @@ exports.update = (req, res, next) => {
       updated_by: req.body.updated_by,
       updated_date: Date(),
     };
+    const file = req.file;
+    if(file !== undefined) {
+      console.log(file);
+      file.uploadDir = "/upload/uploads/";
+      let newPath = file.uploadDir + file.originalname;
+      console.log("log new path", newPath);
+      galleryUpdate.image = newPath;
+    }
     gallerySer
       .update(id, galleryUpdate)
       .then((result) => {

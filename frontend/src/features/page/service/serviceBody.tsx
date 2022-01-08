@@ -18,7 +18,7 @@ export const ServiceBody: React.FC = () => {
                     {category.map((item) => {
                         return (
                             <div key={item.cate_id} className="col-lg-4 col-md-6">
-                                <div className="service-item">
+                                <div className="service-item pb-4">
                                     <div className="service-img">
                                         <img src= {`${process.env.REACT_APP_SERVER_URL}${item.image_cate}`} alt="Image"/>
                                     </div>
@@ -26,7 +26,6 @@ export const ServiceBody: React.FC = () => {
                                     <p>
                                         Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non
                                     </p>
-                                    <Link className="btn" to="">Learn More</Link>
                                 </div>
                             </div>
                         )

@@ -11,7 +11,8 @@ const initialState:blogState = {
         blog_id:0,
         name: '',
         description: '',
-        cate_id: '',
+        content: '',
+        comment: []
     }
 }
 
@@ -27,6 +28,24 @@ const initialState:blogState = {
 //       return response;
 //     }
 // )
+
+export const updateBlog = createAsyncThunk(
+    'blog/updateBlog', async(params:blogInfoRequest, thunkApi) => {
+        const data = new FormData();
+        data.append("name", params.name);
+        data.append("image_blog", params.image_blogs);
+        data.append("description", params.description);
+        data.append("content", params.content);
+        data.append("blog_id", `${params.blog_id}`);
+        const response: any = await blogApi.updateBlog(params.blog_id, data);
+        if (response.statusCode >300) {
+            return thunkApi.rejectWithValue(response.message);
+        }
+      // The value we return becomes the `fulfilled` action payload
+      return response;
+    }
+)
+
 
 export const getBlog = createAsyncThunk(
     'blog/getBlog', async(params, thunkApi) => {
@@ -55,9 +74,9 @@ export const createNewBlog = createAsyncThunk(
     'blog/createNewBlog', async(params:blogInfoRequest, thunkApi) => {
         const data = new FormData();
         data.append("name", params.name);
-        data.append("image", params.image);
+        data.append("image_blogs", params.image_blogs);
         data.append("description", params.description);
-        data.append("cate_id", params.cate_id);
+        data.append("content", params.content);
         data.append("blog_id", `${params.blog_id}`);
         const response: any = await blogApi.createBlog(data);
         if (response.statusCode >300) {
@@ -73,7 +92,11 @@ export const BlogSlice = createSlice({
     name:'blog',
     initialState,
     reducers: {
-        
+        setBlog: (state, action: PayloadAction<any>) => {
+            state.blog = action.payload;
+            console.log(state.blog);
+            
+        },
     },
     extraReducers:(builder) => {
         builder
@@ -121,10 +144,26 @@ export const BlogSlice = createSlice({
             window.alert(state.msg);
             window.location.reload();
         })
+        .addCase(updateBlog.pending, (state) => {
+            state.state ='pending';
+        })
+        .addCase(updateBlog.rejected, (state, action: PayloadAction<any>) => {
+            console.log("in here");
+            state.state ='failed';
+            state.msg = action.payload;
+            window.alert(state.msg);
+        })
+        .addCase(updateBlog.fulfilled, (state, action: PayloadAction<any>) => {
+            state.state = 'idle';
+            //get token from data response from server
+            state.msg = action.payload.message;
+            window.alert(state.msg);
+            window.location.reload();
+        })
     } 
 })
 
 export const { reducer, actions } = BlogSlice;
-// export const { setToken} = actions;
+export const { setBlog } = actions;
 export const selectBlogState = (state: RootState) => state.blog;
 export default reducer;

@@ -3,7 +3,15 @@ const messageConstants = require("../constant/messageConstants");
 
 //get all
 exports.getAll = () => {
-  return models.blogs.findAndCountAll({ where: { deleted: false } });
+  return models.blogs.findAndCountAll({ 
+    where: { deleted: false },
+    include: [
+      {
+        model: models.comment,
+        attributes: ["comment_id", "content", "user_id"],
+      },
+    ]
+  });
 };
 
 //get all paging

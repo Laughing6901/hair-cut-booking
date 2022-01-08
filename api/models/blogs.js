@@ -17,7 +17,7 @@ module.exports = function(sequelize, DataTypes){
             type: Sequelize.STRING(1024)
         },
         content: {
-            type: Sequelize.STRING(1024)
+            type: DataTypes.TEXT
         },
         status: {
             type: Sequelize.INTEGER(2),

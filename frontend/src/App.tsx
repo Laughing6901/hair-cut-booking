@@ -15,6 +15,7 @@ import { useAppDispatch } from './app/hooks';
 import { getCategories } from './features/page/service/category';
 import { getAllService } from './features/page/price/serviceOnlySlice';
 import { getBarber } from './features/page/barber/barberSlice';
+import { getPortfolio } from './features/page/gallery/portfolioSlice';
 
 const App:React.FC = () => {
   const dispatch = useAppDispatch();
@@ -22,6 +23,7 @@ const App:React.FC = () => {
     dispatch(getCategories());
     dispatch(getAllService());
     dispatch(getBarber());
+    dispatch(getPortfolio());
   }, [])
   return (
     <div>

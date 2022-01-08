@@ -3,7 +3,16 @@ const messageConstants = require("../constant/messageConstants");
 
 //get-all
 exports.getAll = () => {
-    return models.gallery.findAndCountAll({where: {deleted: false}});
+    return models.gallery.findAndCountAll({
+        attributes: ["gallery_id", "name", "image", "description"],
+        where: {deleted: false},
+        include: [
+            {
+                model: models.categories,
+                attributes: ["cate_id", "name"],
+            }
+        ]
+    });
 };
 
 //get-all-paging
