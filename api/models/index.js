@@ -50,6 +50,7 @@ db.voucher.belongsTo(db.users, {foreignKey:'user_id'});
 db.users.hasMany(db.comment, {foreignKey: 'user_id'});
 db.comment.belongsTo(db.users, { foreignKey:'user_id'});
 
-
+db.blogs.hasMany(db.comment, {foreignKey:'blog_id'});
+db.comment.belongsTo(db.blogs, {foreignKey:'blog_id'});
 
 module.exports = db;

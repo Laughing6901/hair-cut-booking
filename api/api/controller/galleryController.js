@@ -2,6 +2,7 @@ const gallerySer = require("../services/galleryService");
 const { validationResult } = require("express-validator");
 const messageConstants = require("../constant/messageConstants");
 const Paginator = require("../commons/Paginator");
+const upload = require("../middlewares/upload");
 
 //get-all
 exports.getAll = (req, res) => {
@@ -78,39 +79,105 @@ exports.getById = (req, res) => {
 };
 
 //create
-exports.create = (req, res, next) => {
+exports.create = async (req, res, next) => {
+  // try {
+  //   const errors = validationResult(req);
+  //   if (!errors.isEmpty()) {
+  //     res.status(402).json({ errors: errors.array() });
+  //     return;
+  //   }
+  //   const gallery = {
+  //     name: req.body.name,
+  //     image: req.body.image,
+  //     description: req.body.description,
+  //     cate_id: req.body.cate_id,
+  //     created_by: req.body.created_by,
+  //     status: 1,
+  //     deleted: 0,
+  //   };
+  //   gallerySer
+  //     .create(gallery)
+  //     .then((result) => {
+  //       res.status(200).json({
+  //         success: true,
+  //         message: messageConstants.GALLERY_CREATE_SUSSCESS,
+  //         gallery: result,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       res.send({
+  //         error: {
+  //           status: err.status || 500,
+  //           message: err.message,
+  //         },
+  //       });
+  //     });
+  // } catch (err) {
+  //   return next(err);
+  // }
   try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(402).json({ errors: errors.array() });
       return;
     }
+    const id = req.body.gallery_id;
+    console.log("id: ", id);
     const gallery = {
       name: req.body.name,
-      image: req.body.image,
+      image: '',
       description: req.body.description,
       cate_id: req.body.cate_id,
-      created_by: req.body.created_by,
       status: 1,
       deleted: 0,
     };
-    gallerySer
-      .create(gallery)
-      .then((result) => {
-        res.status(200).json({
-          success: true,
-          message: messageConstants.GALLERY_CREATE_SUSSCESS,
-          gallery: result,
+    await upload(req, res);
+    const file = req.file;
+    console.log(file);
+      file.uploadDir = "/upload/uploads/";
+      let newPath = file.uploadDir + file.originalname;
+      console.log("log new path", newPath);
+      gallery.image = newPath;
+      console.log("gallery", gallery);
+      if(Number(id) !== 0 ) {
+        gallerySer
+        .update(id, gallery)
+        .then((result) => {
+          console.log(result);
+          res.status(200).json({
+            success: true,
+            message: messageConstants.SERVICE_UPDATE_SUSSCESS,
+          });
+        })
+        .catch((err) => {
+          res.send({
+            error: {
+              status: err.status || 500,
+              message: err.message,
+            },
+          });
         });
-      })
-      .catch((err) => {
-        res.send({
-          error: {
-            status: err.status || 500,
-            message: err.message,
-          },
+      } else {
+        gallerySer
+        .create(gallery)
+        .then((result) => {
+          console.log(result);
+          res.status(200).json({
+            success: true,
+            message: messageConstants.SERVICE_CREATE_SUSSCESS,
+            gallery: result,
+          });
+        })
+        .catch((err) => {
+          res.send({
+            error: {
+              status: err.status || 500,
+              message: err.message,
+            },
+          });
         });
-      });
+      }
+      
   } catch (err) {
     return next(err);
   }

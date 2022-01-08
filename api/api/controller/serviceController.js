@@ -3,6 +3,7 @@ const { validationResult } = require("express-validator");
 const messageConstants = require("../constant/messageConstants");
 const Paginator = require("../commons/Paginator");
 const upload = require("../middlewares/upload");
+const fs = require("fs");
 
 //get-all
 exports.getAll = (req, res) => {
@@ -104,7 +105,6 @@ exports.getServiceById = (req, res) => {
     });
 };
 
-
 //create
 exports.create = async (req, res, next) => {
   try {
@@ -113,22 +113,25 @@ exports.create = async (req, res, next) => {
       res.status(402).json({ errors: errors.array() });
       return;
     }
-    await upload(req, res);
-    const file = req.files;
-    console.log("log file", file);
-    file.forEach((item) => {
-      item.uploadDir = "/upload/uploads/";
-      let newPath = item.uploadDir + item.originalname;
+    const id = req.body.service_id;
+    console.log("id: ", id);
+    const service = {
+      name: req.body.name,
+      price: req.body.price,
+      description: req.body.description,
+      cate_id: req.body.cate_id,
+    };
+    // await upload(req,res);
+    const file = req.file;
+    if(file !== undefined) {
+      console.log(file);
+      file.uploadDir = "/upload/uploads/";
+      let newPath = file.uploadDir + file.originalname;
       console.log("log new path", newPath);
-      const service = {
-        name: req.body.name,
-        image: newPath,
-        price: req.body.price,
-        description: req.body.description,
-        cate_id: req.body.cate_id,
-      };
-      console.log(service);
-      serviceSer
+      service.image = newPath;
+    }
+      console.log("service", service);
+        serviceSer
         .create(service)
         .then((result) => {
           res.status(200).json({
@@ -145,7 +148,6 @@ exports.create = async (req, res, next) => {
             },
           });
         });
-    });
   } catch (err) {
     return next(err);
   }
@@ -159,25 +161,26 @@ exports.update = async (req, res, next) => {
       res.status(422).json({ errors: errors.array() });
       return;
     }
-    await upload(req, res);
-    const file = req.files;
-    console.log("log file", file);
-    file.forEach((item) => {
-      item.uploadDir = "/upload/uploads/";
-      let newPath = item.uploadDir + item.originalname;
+    // await upload(req, res);
+    const id = req.params.id;
+    console.log("id: ", id);
+    const service = {
+      name: req.body.name,
+      price: req.body.price,
+      description: req.body.description,
+      cate_id: req.body.cate_id,
+    };
+    // await upload(req,res);
+    const file = req.file;
+    if(file !== undefined) {
+      console.log(file);
+      file.uploadDir = "/upload/uploads/";
+      let newPath = file.uploadDir + file.originalname;
       console.log("log new path", newPath);
-      const id = req.params.id;
-      const serviceUpdate = {
-        name: req.body.name,
-        image: newPath,
-        price: req.body.price,
-        description: req.body.description,
-        cate_id: req.body.cate_id,
-        updated_date: Date(),
-      };
-      console.log(serviceUpdate);
+      service.image = newPath;
+    }
       serviceSer
-        .update(id, serviceUpdate)
+        .update(id, service)
         .then((result) => {
           res.status(200).json({
             success: true,
@@ -192,7 +195,6 @@ exports.update = async (req, res, next) => {
             },
           });
         });
-    });
   } catch (err) {
     return next(err);
   }

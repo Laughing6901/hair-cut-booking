@@ -45,6 +45,7 @@ exports.create = async (service) => {
 //update
 exports.update = async (id, serviceUpdate) => {
     const Id = await models.service.findOne({where: {service_id: id}});
+    console.log(id, serviceUpdate);
     if(!Id){
         return Promise.resolve({
             messsage: messageConstants.SERVICE_ID_NOT_FOUND

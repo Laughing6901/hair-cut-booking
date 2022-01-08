@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import React from "react";
+import { useAppSelector } from "../../../app/hooks";
 import { AdminLogin } from "../../auth/login/login";
 import { selectLoginState } from '../../auth/login/loginSlice';
 import { Header } from "../header/header";
 import { BookingAtTime } from "./bookingView/bookingAtTime";
-import { getBooking } from "./bookingView/bookingSlice";
 import { BookingWeek } from "./bookingView/bookingWeek";
 import { RatingList } from "./chart/rating";
 import { YearChart } from "./chart/yearChart";
@@ -13,10 +12,6 @@ import { MonthlySale } from "./sale/monthlySale";
 import { YearlySale } from "./sale/yearlySale";
 
 export const Home:React.FC = () => {
-    const dispatch = useAppDispatch()
-    useEffect(() => {
-        dispatch(getBooking());
-    }, [])
     return (
         <>"
         <Header tab= "home"/>

@@ -112,7 +112,7 @@ export const SigninUser: React.FC = () => {
                                                                     </div>
 
                                                                     <Field as="select" className="form-control mb-4"   name="role">
-                                                                        <option value="">choose date...</option>
+                                                                        <option value="">choose role...</option>
                                                                         <option value="1">Customer</option>
                                                                         <option value="2">Staff</option>
                                                                         <option value="3">Admin</option>

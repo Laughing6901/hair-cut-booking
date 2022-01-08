@@ -105,15 +105,18 @@ exports.getbyID = async(id)=>{
 
  // Update 
  exports.update=async(id,userUpdate)=>{
+    console.log(id, userUpdate);
   const Id= await models.users.findOne({where:{user_id:id}});
   if(!Id){
       return Promise.resolve({
          message: messageConstants.USER_ID_NOT_FOUND ,
       });
    }else{
-  const salt= await bcrypt.genSalt(10);
-  const hashPassword = await bcrypt.hash(userUpdate.password,salt);
-  userUpdate.password= hashPassword;
+      if(userUpdate.password !== undefined) {
+         const salt= await bcrypt.genSalt(10);
+         const hashPassword = await bcrypt.hash(userUpdate.password,salt);
+         userUpdate.password= hashPassword;
+      }
   return models.users.update(userUpdate,{where:{user_id:id}});
      };
 };

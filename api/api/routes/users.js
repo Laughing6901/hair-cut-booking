@@ -4,14 +4,25 @@ const usersController= require('../controller/userController');
 const { validate } = require('../middlewares/validator');
 const checkAuthMiddleware= require('../middlewares/jwt_token');
 
+const multer = require('multer');
+// var upload = multer({dest: './upload/uploads/'});
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+      callback(null, "./upload/uploads/");
+    },
+    filename: function (req, files, callback) {
+          callback(null,''+`${files.originalname}`)
+      },
+  });
+const upload = multer({ storage: storage });
 
-router.get('/',checkAuthMiddleware.checkAccessToken,usersController.get);
+router.get('/',usersController.get);
 router.get('/stylist',usersController.getStylist);
 router.get('/all-paging',checkAuthMiddleware.checkAccessToken,usersController.getallpaging);
 router.get('/:id',usersController.getbyID);
-router.put('/:id',checkAuthMiddleware.checkAccessToken,validate.validateRegisterUser(),usersController.update);
+router.put('/:id',upload.single("avatar"),usersController.update);
 router.put('/stylist/:id',usersController.updateStylistStatus);
-router.delete('/:id',checkAuthMiddleware.checkAccessToken,usersController.delete);
+router.delete('/:id',usersController.delete);
 router.post('/register',validate.validateRegisterUser(),usersController.register);  
 router.post('/login',validate.validateCheckLogin(),usersController.login);
 // router.get('/signout',usersController.signOut);

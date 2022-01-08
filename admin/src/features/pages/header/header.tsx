@@ -37,6 +37,21 @@ export const Header: React.FC<tabPage> = ({tab}) => {
                     <li data-username="form elements advance componant validation masking wizard picker select" className={tab=== "signin" ? "nav-item active" : "nav-item"}>
                         <Link to ="/create" className="nav-link "><span className="pcoded-micon"><i className="feather icon-file-text"></i></span><span className="pcoded-mtext">Register Form</span></Link>
                     </li>
+                    <li className="nav-item pcoded-menu-caption text-left">
+                        <label>Management</label>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" className={tab=== "service" ? "nav-item active" : "nav-item"}>
+                        <Link to ="/service" className="nav-link "><span className="pcoded-micon"><i className="feather icon-file-text"></i></span><span className="pcoded-mtext">Service</span></Link>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" className={tab=== "gallery" ? "nav-item active" : "nav-item"}>
+                        <Link to ="/gallery" className="nav-link "><span className="pcoded-micon"><i className="feather icon-file-text"></i></span><span className="pcoded-mtext">Gallery</span></Link>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" className={tab=== "blog" ? "nav-item active" : "nav-item"}>
+                        <Link to ="/blog" className="nav-link "><span className="pcoded-micon"><i className="feather icon-file-text"></i></span><span className="pcoded-mtext">Blog</span></Link>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" className={tab=== "account" ? "nav-item active" : "nav-item"}>
+                        <Link to ="/account" className="nav-link "><span className="pcoded-micon"><i className="feather icon-file-text"></i></span><span className="pcoded-mtext">Account</span></Link>
+                    </li>
                 </ul>
             </div>
         </div>

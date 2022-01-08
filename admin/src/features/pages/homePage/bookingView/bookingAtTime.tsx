@@ -1,6 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
-import { bookingInfo, listBookingDetails, listBookingInfo, statusStyle, timeForBooking, updateStatusBooking } from "./booking-dto";
+import { listBookingInfo, statusStyle, timeForBooking, updateStatusBooking } from "./booking-dto";
 import { ExecuteTotalPrice, getBooking, selectBookingState, updateBookingStatus } from "./bookingSlice";
 
 export const BookingAtTime:React.FC = () => {
@@ -65,7 +65,7 @@ export const BookingAtTime:React.FC = () => {
                                             let time = new Date(booking.start_time);
                                             // set current time to compare with time in array to render 
                                             let currTime = time.getHours()*100 + time.getMinutes();
-                                            if((date.getDate() === time.getDate()) && (item === currTime)) {
+                                            if((date.toLocaleDateString() === time.toLocaleDateString()) && (item === currTime)) {
                                             return (
                                                 <tr key={booking.booking_id}>
                                                     <td>
