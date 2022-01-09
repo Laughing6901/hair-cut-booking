@@ -8,7 +8,7 @@ export const YearlySale: React.FC = () => {
     const today = new Date(Date.now());
     const listYearPrice = booking.listBookingInfo.map(item => {
         let itemDate = new Date(item.start_time);
-        if (itemDate.getFullYear === today.getFullYear) {
+        if ((itemDate.getFullYear === today.getFullYear) && item.status === 1) {
             let price = item.bookingdetails.map(temp => temp.price!== null ? Number(temp.price) : 0);
             if(price.length !== 0){
                 return price.reduce(reducer);

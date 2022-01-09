@@ -10,7 +10,17 @@ const initialState: registerState = {
 
 export const registerFunction = createAsyncThunk(
     'Register/registerAccount', async(params:registerInfo, thunkApi) => {
-        const response: any = await authApi.register(params);
+        const data = new FormData();
+        data.append("fullname", params.fullname);
+        data.append("image", params.image);
+        data.append("address", params.address);
+        data.append("email", params.email);
+        data.append("password", params.password);
+        data.append("phone", params.phone);
+        data.append("role", params.role);
+        data.append("username", params.username);
+
+        const response: any = await authApi.register(data);
         console.log(response);
         if (response.statusCode >300) {
             return thunkApi.rejectWithValue(response.message);
@@ -44,6 +54,7 @@ export const registerSlice = createSlice({
             //get token from data response from server
             state.msg = action.payload.message;
             window.alert(action.payload.message);
+            window.location.reload();
         })
     }
 })

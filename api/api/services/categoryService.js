@@ -13,15 +13,16 @@ exports.getAll = () => {
     include:[
       {
         model: models.service,
+        where: {deleted: 0},
         attributes:['service_id','name','price', 'image', 'cate_id', 'status'],
       },
       {
         model: models.gallery,
-        attributes:['gallery_id','name', 'image']
+        attributes:['gallery_id','name', 'image'],
       }, 
       {
         model: models.voucher,
-        attributes: ["voucher_id", "voucher_code", "status", "image_service", "price", "description_voucher"]
+        attributes: ["voucher_id", "voucher_code", "status", "image_service", "price", "description_voucher"],
       }
   ],
   })

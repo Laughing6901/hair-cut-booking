@@ -36,8 +36,8 @@ export const SigninUser: React.FC = () => {
                                                         dispatch(registerFunction(values));
                                                     }}
                                                     >
-                                                    {({ errors, touched }) => (
-                                                        <Form>
+                                                    {({ errors, touched, setFieldValue }) => (
+                                                        <Form encType="multipart/form-data">
                                                             <div className="row">
                                                                 <div className="col-md-6">
                                                                     <div className="form-group">
@@ -108,7 +108,9 @@ export const SigninUser: React.FC = () => {
                                                                     </div>
                                                                     <div className="form-group">
                                                                         <label>Avatar</label>
-                                                                        <Field name="avatar" type= "file" className="form-control pb-1 pt-1"/>
+                                                                        <input id="file" name="image" type= "file" className="form-control pb-1 pt-1"onChange={(event:any) => {
+                                                    setFieldValue("image", event.currentTarget.files[0]);
+                                                }}/>
                                                                     </div>
 
                                                                     <Field as="select" className="form-control mb-4"   name="role">

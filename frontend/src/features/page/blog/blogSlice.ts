@@ -19,7 +19,8 @@ const initialState: blogState = {
 }
 
 export const getBlog =createAsyncThunk(
-    'Blog/getBlog', async(req, thunkApi) => {
+    'Blog/getBlog', async(req:number, thunkApi) => {
+        console.log(req);
         const response: any = await pageApi.getBlog();
         console.log(response);
         if (response.statusCode >300) {
@@ -27,6 +28,15 @@ export const getBlog =createAsyncThunk(
         }
         // thunkApi.dispatch(setAccount(response.Account));
       // The value we return becomes the `fulfilled` action payload
+      if(req !== 0 ) {
+          console.log("here");
+          let blog: any = response.data.rows.filter((item:any) => {
+              if(item.blog_id === req) 
+              return item
+          })
+          console.log("test:", blog);
+          thunkApi.dispatch(setSingleBlog(blog));
+      }
       return response;
     }
 )
@@ -39,8 +49,8 @@ export const blogSlice = createSlice ({
             state.blog = action.payload;
             state.state = 'single';
         },
-        setBlogState: (state) => {
-            state.state = 'idle';
+        setBlogState: (state, action:PayloadAction<any>) => {
+            state.state = action.payload;
         }
     },
     extraReducers: (builder) => {

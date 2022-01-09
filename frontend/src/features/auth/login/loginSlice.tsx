@@ -76,6 +76,9 @@ export const loginSlice = createSlice({
         })
         .addCase(getUserInfomation.fulfilled, (state, action: PayloadAction<any>) => {
             state.state = 'idle';
+            localStorage.setItem("Username", action.payload.user.fullname);
+            localStorage.setItem("userId", action.payload.user.user_id);
+            window.location.reload();
         })
     }
 })

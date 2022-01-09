@@ -22,7 +22,7 @@ export const HomePage: React.FC = () => {
         <PriceBody />
         <BarberBody />
         <ContactBody />
-        <BlogBody />
+        <BlogBody blog={0} />
     </>
     )
 }

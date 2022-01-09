@@ -51,7 +51,7 @@ export const GuestBookingForm: React.FC = () => {
                             <div>{errors.contact}</div>
                         ) : null}
                     </div>
-                    <Field name="contact" className="col-sm-10 mb-2 booking-input login-input" placeholder="your full name" />
+                    <Field name="contact" values= {userInfo.fullname} className="col-sm-10 mb-2 booking-input login-input" placeholder="your full name" />
 
                     <div className="col-sm-10 text-danger text-left" >
                         {errors.phone && touched.phone ? (
@@ -70,7 +70,7 @@ export const GuestBookingForm: React.FC = () => {
                         ) : null}
                     </div>
 
-                    <Popup className='h-50' trigger={<button type="button" className="col-sm-10 mb-2 login-input bg-white booking-input text-left p-2"> <i className="fas fa-cut"></i> {`Service >`} </button>} modal>
+                    <Popup className='h-50' trigger={<button type="button" className="col-sm-10 mb-2 login-input bg-white booking-input text-left p-2"> <i className="fas fa-cut"></i> {`Service > `} </button>} modal>
                         <div role="group" className="row portfolio-container justify-content-center " aria-labelledby="checkbox-group">
                             {categories.map((item) => {
                                 return (
@@ -102,14 +102,15 @@ export const GuestBookingForm: React.FC = () => {
                     </Popup>
                     {values.service.length === 0 ? <></> :
                         <ul className="col-sm-10 mb-2 login-input booking-input text-left text-dark">
+                            <li>
                             {
                                 values.service.map(item => {
                                     return service.map(service => {
                                         if (service.service_id === Number(item)) {
                                             return (
-                                                <h6 key={service.service_id}>
-                                                    {service.name}
-                                                </h6>
+                                                <>
+                                                    {service.name},
+                                                </>
                                             )
                                         } else {
                                             return (
@@ -119,6 +120,7 @@ export const GuestBookingForm: React.FC = () => {
                                     });
                                 })
                             }
+                            </li>
                         </ul>
                     }
                     <div className="col-sm-10 text-left px-0">

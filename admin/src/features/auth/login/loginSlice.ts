@@ -50,6 +50,7 @@ export const LoginSlice = createSlice({
             state.Account = action.payload.Account;
             window.alert(action.payload.message);
             sessionStorage.setItem("token",action.payload.Token.accessToken);
+            localStorage.setItem("Account", action.payload.Account);
         })
     } 
 })

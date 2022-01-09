@@ -24,7 +24,7 @@ export const BookingAtTime:React.FC = () => {
     }, [])
 
     return (
-        <div className="col-xl-8 col-md-12 m-b-30 Recent-Users">
+        <div className="col-xl-12 col-md-12 m-b-30 Recent-Users">
             <ul className="nav nav-tabs" id="myTab" role="tablist">
                 {
                     timeBooking.map((item, index) => {

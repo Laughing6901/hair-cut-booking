@@ -102,7 +102,7 @@ exports.create = (req, res, next) => {
       file.uploadDir = "/upload/uploads/";
       let newPath = file.uploadDir + file.originalname;
       console.log("log new path", newPath);
-      blogs.image = newPath;
+      blogs.image_blogs = newPath;
     }
     blogService
       .create(blogs)

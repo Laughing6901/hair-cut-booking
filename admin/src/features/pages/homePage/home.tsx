@@ -27,7 +27,6 @@ export const Home:React.FC = () => {
                                     <MonthlySale />
                                     <YearlySale />
                                     <BookingAtTime />
-                                    <YearChart />
                                     <RatingList />
                                     <BookingWeek />
                                     <BookingYear />

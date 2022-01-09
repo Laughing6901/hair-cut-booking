@@ -91,6 +91,7 @@ exports.register = async (req, res, next) => {
       res.status(422).json({ errors: errors.array() });
       return;
     }
+    console.log(req.body);
     const user = {
       username: req.body.username,
       password: req.body.password,
@@ -98,9 +99,22 @@ exports.register = async (req, res, next) => {
       email: req.body.email,
       phone: req.body.phone,
       address: req.body.address,
-      avatar: `upload/uploads/${req.body.avatar}`,
       role: req.body.role,
     }
+    const file = req.file;
+    if(file !== undefined) {
+      console.log(file);
+      file.uploadDir = "/upload/uploads/";
+      let newPath = file.uploadDir + file.originalname;
+      console.log("log new path", newPath);
+      user.avatar = newPath;
+    } else {
+      file.uploadDir = "/upload/uploads/";
+      let newPath = file.uploadDir + "user.png";
+      console.log("log new path", newPath);
+      user.avatar = newPath;
+    }
+    console.log(user);
     userService.register(user).then(result => {
       if (result.message === undefined) {
         res.status(200).json({

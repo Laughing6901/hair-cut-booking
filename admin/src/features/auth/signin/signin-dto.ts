@@ -4,7 +4,8 @@ export type registerInfo = {
     email: string,
     phone: string,
     address: string,
-    avatar: string,
+    image?: any,
+    avatar?: any,
     role: string,
     password: string,
 }
@@ -19,7 +20,6 @@ export const registerInit: registerInfo = {
     email: "",
     phone: "",
     address: "",
-    avatar: "",
     role: "",
     password: "",
 }

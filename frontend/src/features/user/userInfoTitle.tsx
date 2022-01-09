@@ -5,7 +5,7 @@ import { selectUserInfo } from "./userInfo";
 
 export const UserTitle:React.FC = () => {
     const userInfo = useAppSelector(selectUserInfo).userInfo;
-    const listname: string[] = userInfo.fullname.split(" ");
+    const listname: any =  localStorage.getItem("Username")?.split(" ");
     const name: string = listname[listname.length -1];
     return (
         <div className="nav-item dropdown">
@@ -13,8 +13,10 @@ export const UserTitle:React.FC = () => {
                 <div className="dropdown-menu dropdown-menu-dark">
                     <Link to="/blog" className="dropdown-item">Blog Page</Link>
                     <Link to="/history" className="dropdown-item">History</Link>
-                    <Link to="" className="dropdown-item">Voucher</Link>
-                    <button className=" dropdown-item" onClick={() => {window.location.reload()}}>Log out</button>
+                    <button className=" dropdown-item" onClick={() => {
+                        window.location.reload();
+                        localStorage.removeItem("Username");
+                        }}>Log out</button>
                 </div>
         </div>
     )

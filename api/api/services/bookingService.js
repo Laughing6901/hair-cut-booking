@@ -9,7 +9,7 @@ exports.getAll = () => {
 exports.getAllBookingAndService = () => {
     return models.booking.findAndCountAll(
         {
-            attributes: ["booking_id","start_time","contact","phone","description","status"],
+            attributes: ["booking_id","start_time","contact","phone","description","status", "preview"],
             where: {deleted: false},
             include: [
                 {

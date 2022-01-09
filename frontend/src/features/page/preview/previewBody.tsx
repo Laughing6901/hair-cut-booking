@@ -16,7 +16,7 @@ export const ExecuteTotalPrice = (details: listBookingDetails) => {
 
 export const PreviewBody: React.FC = () => {
     const dispatch = useAppDispatch();
-    const userId: number = useAppSelector(selectUserInfo).userInfo.user_id;
+    const userId: any = window.localStorage.getItem("userId");
     const navigate = useNavigate();
     const previewState: previewState = useAppSelector(selectPreviewState);
     useEffect(() => {

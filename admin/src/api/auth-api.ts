@@ -9,7 +9,7 @@ export const authApi = {
         let url = `users/login`;
         return axiosClient.post(url, params);
     },
-    register: (params:registerInfo) => {
+    register: (params:any) => {
         let url = `users/register`;
         return axiosClient.post(url, params);
     }

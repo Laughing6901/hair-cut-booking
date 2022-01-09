@@ -36,6 +36,7 @@ export interface bookingInfo {
     contact: string,
     phone: string,
     description: string,
+    preview: string,
     status: number,
     bookingdetails: listBookingDetails,
 }

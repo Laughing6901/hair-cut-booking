@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { blogInfoRequest, blogState, listBlogInfoResponse } from "./blog-dto";
-import { selectBlogState, setSingleBlog } from "./blogSlice";
+import { getBlog, selectBlogState, setBlogState, setSingleBlog } from "./blogSlice";
 
-export const BlogBody: React.FC = () => {
+export interface type {
+    blog: number
+}
+
+
+export const BlogBody: React.FC<type> = ({blog}) => {
     const blogState: blogState = useAppSelector(selectBlogState);
     console.log(blogState.listBlog);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const setBlog = (params: blogInfoRequest) => {
         dispatch(setSingleBlog(params));
+        navigate('/single', {replace: true});
     }
-
+    useEffect(() => {
+        dispatch(getBlog(0));
+    }, [])
     return (
         <div className="blog">
             <div className="container">

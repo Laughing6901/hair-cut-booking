@@ -1,4 +1,5 @@
-import { Field, Form, Formik } from 'formik';
+import { Field, FieldHookConfig, Form, Formik, useField } from 'formik';
+import React, {useState} from 'react';
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { listCateInfoResponse } from "../categories/cate-dto";
 import { selectCateState } from '../categories/categoriesSlice';
@@ -9,10 +10,10 @@ import { blogValidate } from "./blogValidate";
 export type formFunc = {
     status: string;
 }
-
 export const BlogForm: React.FC<formFunc> = ({status}) => {
     let initialValues: blogInfoRequest = useAppSelector(selectBlogState).blog;
     const baseUrl = "http://localhost:8000";
+    const [text, setText] = useState<string>(initialValues.content);
     const dispatch = useAppDispatch();
     const blogInfo:blogState = useAppSelector(selectBlogState);
     return (
@@ -29,6 +30,7 @@ export const BlogForm: React.FC<formFunc> = ({status}) => {
                             initialValues={initialValues}
                             validationSchema={blogValidate}
                             onSubmit={values => {
+                                values.content = text;
                                 console.log(values);
                                 status === 'create' ? dispatch(createNewBlog(values)) : dispatch(updateBlog(values));
                                 
@@ -74,9 +76,10 @@ export const BlogForm: React.FC<formFunc> = ({status}) => {
                                                 <label>Content</label>
                                                 <textarea 
                                                     className="form-control" 
-                                                    value={values.content}
+                                                    value={text}
                                                     name="content" 
-                                                    onChange={(e) => {
+                                                    onChange={(e:any) => {
+                                                        setText(e.target.value);
                                                         values.content = e.target.value;
                                                     }}
                                                     // id="exampleFormControlTextarea1" 

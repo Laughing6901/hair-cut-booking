@@ -8,7 +8,7 @@ export type tabPage = {
 
 export const Header: React.FC<tabPage> = ({tab}) => {
     const dispatch = useAppDispatch();
-    const Account = useAppSelector(selectLoginState).Account;
+    const Account = localStorage.getItem("Account");
     let navigate = useNavigate();
     return (
         <>
@@ -159,18 +159,13 @@ export const Header: React.FC<tabPage> = ({tab}) => {
                                 <button  className=" btn dud-logout" title="Logout" onClick={() => {
                                     dispatch(setToken(''));
                                     sessionStorage.removeItem("token");
+                                    localStorage.removeItem("Account");
                                     navigate("/",{replace:true});
                                     window.location.reload();
                                 }}>
                                     <i className="feather icon-log-out"></i>
                                 </button>
                             </div>
-                            <ul className="pro-body">
-                                <li><a href="javascript:" className="dropdown-item"><i className="feather icon-settings"></i> Settings</a></li>
-                                <li><a href="javascript:" className="dropdown-item"><i className="feather icon-user"></i> Profile</a></li>
-                                <li><a href="message.html" className="dropdown-item"><i className="feather icon-mail"></i> My Messages</a></li>
-                                <li><a href="auth-signin.html" className="dropdown-item"><i className="feather icon-lock"></i> Lock Screen</a></li>
-                            </ul>
                         </div>
                     </div>
                 </li>

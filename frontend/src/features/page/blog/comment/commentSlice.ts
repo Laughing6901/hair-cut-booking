@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { pageApi } from "../../../../api/page-api";
 import { RootState } from "../../../../app/store";
+import { getBlog } from "../blogSlice";
 import { commentInfoRequest, commentState } from "./comment-dto";
 
 const initialState: commentState = {

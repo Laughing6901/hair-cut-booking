@@ -8,7 +8,7 @@ export const DailySale: React.FC = () => {
     const reducer = (previousValue:any, currentValue:any) => previousValue + currentValue;
     const today = new Date(Date.now());
     const listDailyPrice = booking.listBookingInfo.map(item => {
-        if (new Date(item.start_time).toDateString()  === today.toDateString()) {
+        if (new Date(item.start_time).toDateString()  === today.toDateString() && item.status === 1) {
             let price = item.bookingdetails.map(temp => temp.price!== null ? Number(temp.price) : 0);
             if(price.length !== 0){
                 return price.reduce(reducer);

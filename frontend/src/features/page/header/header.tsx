@@ -61,7 +61,7 @@ export const Header:React.FC = () => {
                             )
                         } 
                         )}
-                        {loginState.msg === "USER_LOGIN_SUSSCESS"? <UserTitle />:<AuthLayout /> }
+                        {localStorage.getItem("Username") !== null ? <UserTitle />:<AuthLayout /> }
                     </div>
                 </div>
             </div>

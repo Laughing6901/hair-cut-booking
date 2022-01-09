@@ -48,6 +48,7 @@ export const BookingYear: React.FC = () => {
                                         <th>Date</th>
                                         <th>Service</th>
                                         <th>Price</th>
+                                        <th>Preview</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -96,6 +97,9 @@ export const BookingYear: React.FC = () => {
                                                                 </h6>
                                                             )
                                                         })}
+                                                    </td>
+                                                    <td>
+                                                        <h6>{booking.preview}</h6>
                                                     </td>
                                                     <td>
                                                         {booking.status === 2 ?

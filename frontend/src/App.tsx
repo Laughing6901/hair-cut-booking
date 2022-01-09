@@ -8,6 +8,7 @@ import { getBarber } from './features/page/barber/barberSlice';
 import { BlogPage } from './features/page/blog/blogPage';
 import { getBlog } from './features/page/blog/blogSlice';
 import { getComment } from './features/page/blog/comment/commentSlice';
+import { SingleBlog } from './features/page/blog/singleBlog';
 import { ContactPage } from './features/page/contact/contactPage';
 import { Footer } from './features/page/footer/footer';
 import { PortfolioPage } from './features/page/gallery/portfolioPage';
@@ -28,7 +29,7 @@ const App:React.FC = () => {
     dispatch(getAllService());
     dispatch(getBarber());
     dispatch(getPortfolio());
-    dispatch(getBlog());
+    dispatch(getBlog(0));
     dispatch(getAllUser());
   }, [])
   return (
@@ -40,7 +41,8 @@ const App:React.FC = () => {
         <Route path= "/service" element = {<Service/>} />
         <Route path= "/price" element = {<PricePage/>} />
         <Route path= "/barber" element = {<BarberPage/>} />
-        <Route path= "/blog" element = {<BlogPage/>} />
+        <Route path= "/blog" element = {<BlogPage />} />
+        <Route path= "/single" element = {<SingleBlog/>} />
         <Route path= "/history" element = {<PreviewPage/>} />
         <Route path = "/contact" element = {<ContactPage />} />
         <Route path = "/gallery" element = {<PortfolioPage />} />
