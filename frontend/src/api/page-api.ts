@@ -36,5 +36,5 @@ export const pageApi = {
     getUser: () => {
         let url = `users`;
         return axiosClient.get(url);
-    }
+    },
 }

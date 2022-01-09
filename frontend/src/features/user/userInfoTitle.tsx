@@ -12,6 +12,7 @@ export const UserTitle:React.FC = () => {
             <button className="user-dropdown login-btn dropdown-toggle" data-toggle="dropdown">{name}</button>
                 <div className="dropdown-menu dropdown-menu-dark">
                     <Link to="/blog" className="dropdown-item">Blog Page</Link>
+                    <Link to="/history" className="dropdown-item">History</Link>
                     <Link to="" className="dropdown-item">Voucher</Link>
                     <button className=" dropdown-item" onClick={() => {window.location.reload()}}>Log out</button>
                 </div>

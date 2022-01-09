@@ -14,6 +14,7 @@ import { PortfolioPage } from './features/page/gallery/portfolioPage';
 import { getPortfolio } from './features/page/gallery/portfolioSlice';
 import { Header } from './features/page/header/header';
 import { HomePage } from './features/page/home/homePage';
+import { PreviewPage } from './features/page/preview/previewPage';
 import { PricePage } from './features/page/price/pricePage';
 import { getAllService } from './features/page/price/serviceOnlySlice';
 import { getCategories } from './features/page/service/category';
@@ -40,6 +41,7 @@ const App:React.FC = () => {
         <Route path= "/price" element = {<PricePage/>} />
         <Route path= "/barber" element = {<BarberPage/>} />
         <Route path= "/blog" element = {<BlogPage/>} />
+        <Route path= "/history" element = {<PreviewPage/>} />
         <Route path = "/contact" element = {<ContactPage />} />
         <Route path = "/gallery" element = {<PortfolioPage />} />
       </Routes>

@@ -103,13 +103,13 @@ exports.getUserBooking = (req, res) => {
   .getByUserId(req.params.id)
   .then((booking) => {
     if (booking === null) {
-      res.status(200).json({
-        message: messageConstants.BOOKING_FOUND,
+      res.status(404).json({
+        message: messageConstants.BOOKING_NOT_FOUND,
       });
     } else {
-      res.status(404).json({
+      res.status(200).json({
         success: true,
-        message: messageConstants.BOOKING_NOT_FOUND,
+        message: messageConstants.BOOKING_FOUND,
         booking: booking,
       });
     }
@@ -183,6 +183,41 @@ exports.update = (req, res, next) => {
       updated_by: req.body.updated_by,
       updated_date: Date(),
     };
+    serviceBooking
+      .update(id, bookingUpdate)
+      .then((result) => {
+        res.status(200).json({
+          success: true,
+          message: messageConstants.BOOKING_UPDATE_SUSSCESS,
+        });
+      })
+      .catch((err) => {
+        res.send({
+          error: {
+            status: err.status || 500,
+            message: err.message,
+          },
+        });
+      });
+  } catch (err) {
+    return next(err);
+  }
+};
+
+exports.updatePreview = (req, res, next) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(422).json({ errors: errors.array() });
+      return;
+    }
+    const id = req.params.id;
+    console.log("test:", req.body);
+    const bookingUpdate = {
+      preview: req.body.preview,
+      updated_date: Date(),
+    };
+    console.log("Test:", bookingUpdate);
     serviceBooking
       .update(id, bookingUpdate)
       .then((result) => {

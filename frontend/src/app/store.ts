@@ -11,6 +11,7 @@ import registerReducer from '../features/auth/register/registerSlice';
 import authLayoutReducer from '../features/auth/layoutSlice';
 import blogReducer from '../features/page/blog/blogSlice';
 import commentReducer from '../features/page/blog/comment/commentSlice';
+import previewReducer from '../features/page/preview/previewSlice';
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ export const store = configureStore({
     authLayoutState: authLayoutReducer,
     blogState: blogReducer,
     commentState: commentReducer,
+    previewState: previewReducer,
   },
 });
 

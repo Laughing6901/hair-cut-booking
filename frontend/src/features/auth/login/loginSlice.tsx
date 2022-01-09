@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { authApi } from "../../../api/auth-api";
 import { RootState } from "../../../app/store";
+import { getPreview } from "../../page/preview/previewSlice";
 import { setInfomation } from "../../user/booking/ bookingSlice";
 import { setAccount } from "../../user/userInfo";
 import { loginInfo, loginState } from "./login-dto";
@@ -18,6 +19,7 @@ export const loginFunction = createAsyncThunk(
             return thunkApi.rejectWithValue(response.message);
         }
         thunkApi.dispatch(getUserInfomation(response.Id));
+        thunkApi.dispatch(getPreview(response.Id));
       // The value we return becomes the `fulfilled` action payload
       return response;
     }

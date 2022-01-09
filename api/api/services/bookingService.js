@@ -38,7 +38,16 @@ exports.getByid = async (id) => {
 };
 
 exports.getByUserId = async (id) => {
-    return models.booking.findAll({where: {user_id: id}});
+    return models.booking.findAll({
+        attributes: ["booking_id","start_time","contact","phone","description","status", "preview"],
+        where: {user_id: id},
+        include: [
+            {
+                model: models.booking_detail,
+                attributes: ["booking_detail_id", "service_id", "price", "description"]
+            },
+        ]
+    });
 };
 
 

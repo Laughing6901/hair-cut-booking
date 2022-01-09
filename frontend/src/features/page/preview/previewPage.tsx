@@ -5,7 +5,7 @@ import { PreviewBody } from "./previewBody";
 export const PreviewPage: React.FC = () => {
     return (
         <>
-            <BreadCrumb tab="Gallery" />
+            <BreadCrumb tab="History" />
             <PreviewBody />
         </>
     )

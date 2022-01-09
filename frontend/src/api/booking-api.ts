@@ -17,5 +17,13 @@ export const bookingApi = {
             status:0
         }
         return axiosClient.put(url, reqBody);
+    },
+    getUserBooking: (id: number)  => {
+        let url = `bookings/userbooking/${id}`;
+        return axiosClient.get(url);
+    },
+    sendPreview: (params: any) => {
+        let url = `bookings/previewbooking/${params.booking_id}`;
+        return axiosClient.put(url, params);
     }
 }
