@@ -41,7 +41,7 @@ export const GuestBookingForm: React.FC = () => {
                         <h5 className="font-weight-bold">Salon Address</h5>
                     </div>
                     <div className="col-sm-10 mb-2 login-input booking-input text-left bg-white p-2">
-                        <p className="m-0"><i className="fas fa-home"></i> 22 Tran Hung Dao</p>
+                        <p className="m-0"><i className="fas fa-home"></i> 31 Nguyễn Chí Thanh - Ngọc Khánh - Ba Đình - Hà Nội</p>
                     </div>
                     <div className="col-sm-10 text-left px-0">
                         <h5 className="font-weight-bold">Infomation</h5>

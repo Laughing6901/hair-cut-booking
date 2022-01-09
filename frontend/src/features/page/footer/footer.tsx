@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
                             <div className="col-md-6">
                                 <div className="footer-contact">
                                     <h2>Salon Address</h2>
-                                    <p><i className="fa fa-map-marker-alt"></i>123 Street, New York, USA</p>
+                                    <p><i className="fa fa-map-marker-alt"></i>31 Nguyễn Chí Thanh - Ngọc Khánh - Ba Đình - Hà Nội</p>
                                     <p><i className="fa fa-phone-alt"></i>+012 345 67890</p>
                                     <p><i className="fa fa-envelope"></i>info@example.com</p>
                                     <div className="footer-social">
