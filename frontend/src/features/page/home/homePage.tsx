@@ -23,6 +23,10 @@ export const HomePage: React.FC = () => {
         {/* <ServiceBody/> */}
         <div className="service">
             <div className="container">
+                <div className="section-header text-center">
+                    <p>Our Salon Services</p>
+                    <h2>Best Salon and Barber Services for You</h2>
+                </div>
                 <div className="row justify-content-center">
                     {service.serviceOnly.map((item, index) => {
                        if(index <3) {
@@ -49,6 +53,10 @@ export const HomePage: React.FC = () => {
         {/* <PriceBody /> */}
         <div className="price">
             <div className="container">
+                <div className="section-header text-center">
+                    <p>Our Best Pricing</p>
+                    <h2>We Provide Best Price in the City</h2>
+                </div>
                 <div className="row justify-content-center">
                     {service.serviceOnly.map((item, index) => {
                         if(index <4) {
