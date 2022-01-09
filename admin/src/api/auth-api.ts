@@ -12,5 +12,9 @@ export const authApi = {
     register: (params:any) => {
         let url = `users/register`;
         return axiosClient.post(url, params);
+    },
+    sendImg:(params: any) => {
+        let url = `users/image`;
+        return axiosClient.post(url, params);
     }
 }

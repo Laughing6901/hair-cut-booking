@@ -4,7 +4,8 @@ export type registerInfo = {
     email: string,
     phone: string,
     address: string,
-    avatar: string,
+    avatar?: string,
+    image?: any,
     role: number,
     password: string,
 }

@@ -28,7 +28,7 @@ export const Register: React.FC = () => {
                 dispatch(setPage('login'));
             }}
             >
-            {({ errors, touched }) => (
+            {({ errors, touched, setFieldValue }) => (
                 <Form className="row justify-content-center">
                     <div className = "col-sm-10 text-white" >
                         {errors.username && touched.username ? (
@@ -72,7 +72,9 @@ export const Register: React.FC = () => {
                     </div>
                     <Field name="address" className = "col-sm-10 mt-2 mb-4 login-input"  placeholder = "address"/>
 
-                    <Field type="file" name="avatar" className = "col-sm-10 mt-2 pt-1 mb-4 login-input"  placeholder = "username"/>
+                    <input id="file" name="image" type= "file" className = "col-sm-10 mt-2 pt-1 mb-4 login-input" onChange={(event:any) => {
+                                                    setFieldValue("image", event.currentTarget.files[0]);
+                                                }}/>
 
                         <button className="col-sm-10 mb-3 mt-2 btn btn-submit font-weight-bold" type="submit">
                             <span>{registerState.state === 'pending' ? 

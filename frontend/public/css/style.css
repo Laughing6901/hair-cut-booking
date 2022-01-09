@@ -1494,3 +1494,13 @@ input:checked + label {
 .team-text-mg {
     margin: -20px 24px 0 0px !important;
 }
+.btn-learnmore {
+    border: 2px solid #1D2434;
+    font-size: 20px;
+    color:#1d2434;
+}
+
+.btn-learnmore:hover {
+    background-color: #1d2434;
+    color:#D5B981;
+}
