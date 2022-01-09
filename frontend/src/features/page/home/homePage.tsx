@@ -3,7 +3,6 @@ import { useAppDispatch } from "../../../app/hooks";
 import { AboutUsBody } from "../about/aboutUsBody";
 import { BarberBody } from "../barber/barberBody";
 import { BlogBody } from "../blog/blog";
-import { ContactBody } from "../contact/contactBody";
 import { setTab } from "../pageSlice";
 import { PriceBody } from "../price/priceBody";
 import { ServiceBody } from "../service/serviceBody";
@@ -21,7 +20,6 @@ export const HomePage: React.FC = () => {
         <ServiceBody/>
         <PriceBody />
         <BarberBody />
-        <ContactBody />
         <BlogBody blog={0} />
     </>
     )

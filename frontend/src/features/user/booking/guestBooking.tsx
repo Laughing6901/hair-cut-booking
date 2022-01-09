@@ -101,7 +101,7 @@ export const GuestBookingForm: React.FC = () => {
                         </div>
                     </Popup>
                     {values.service.length === 0 ? <></> :
-                        <ul className="col-sm-10 mb-2 login-input booking-input text-left text-dark">
+                        <ul className="col-sm-10 m-0 text-left text-dark">
                             <li>
                             {
                                 values.service.map(item => {

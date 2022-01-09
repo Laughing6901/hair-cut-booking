@@ -9,7 +9,6 @@ import { BlogPage } from './features/page/blog/blogPage';
 import { getBlog } from './features/page/blog/blogSlice';
 import { getComment } from './features/page/blog/comment/commentSlice';
 import { SingleBlog } from './features/page/blog/singleBlog';
-import { ContactPage } from './features/page/contact/contactPage';
 import { Footer } from './features/page/footer/footer';
 import { PortfolioPage } from './features/page/gallery/portfolioPage';
 import { getPortfolio } from './features/page/gallery/portfolioSlice';
@@ -44,7 +43,6 @@ const App:React.FC = () => {
         <Route path= "/blog" element = {<BlogPage />} />
         <Route path= "/single" element = {<SingleBlog/>} />
         <Route path= "/history" element = {<PreviewPage/>} />
-        <Route path = "/contact" element = {<ContactPage />} />
         <Route path = "/gallery" element = {<PortfolioPage />} />
       </Routes>
       <Footer />
