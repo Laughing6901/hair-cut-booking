@@ -1,21 +1,24 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import { useAppDispatch } from './app/hooks';
 import { AboutUs } from './features/page/about/aboutUsPage';
-import { Service } from './features/page/service/servicePage';
-import { Header } from './features/page/header/header';
-import { HomePage } from './features/page/home/homePage';
-import { PricePage } from './features/page/price/pricePage';
 import { BarberPage } from './features/page/barber/barberPage';
+import { getBarber } from './features/page/barber/barberSlice';
 import { BlogPage } from './features/page/blog/blogPage';
+import { getBlog } from './features/page/blog/blogSlice';
+import { getComment } from './features/page/blog/comment/commentSlice';
 import { ContactPage } from './features/page/contact/contactPage';
 import { Footer } from './features/page/footer/footer';
 import { PortfolioPage } from './features/page/gallery/portfolioPage';
-import { useAppDispatch } from './app/hooks';
-import { getCategories } from './features/page/service/category';
-import { getAllService } from './features/page/price/serviceOnlySlice';
-import { getBarber } from './features/page/barber/barberSlice';
 import { getPortfolio } from './features/page/gallery/portfolioSlice';
+import { Header } from './features/page/header/header';
+import { HomePage } from './features/page/home/homePage';
+import { PricePage } from './features/page/price/pricePage';
+import { getAllService } from './features/page/price/serviceOnlySlice';
+import { getCategories } from './features/page/service/category';
+import { Service } from './features/page/service/servicePage';
+import { getAllUser } from './features/user/userInfo';
 
 const App:React.FC = () => {
   const dispatch = useAppDispatch();
@@ -24,6 +27,8 @@ const App:React.FC = () => {
     dispatch(getAllService());
     dispatch(getBarber());
     dispatch(getPortfolio());
+    dispatch(getBlog());
+    dispatch(getAllUser());
   }, [])
   return (
     <div>

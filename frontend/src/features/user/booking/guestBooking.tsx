@@ -25,14 +25,14 @@ export const GuestBookingForm: React.FC = () => {
         <Formik
             initialValues={initialValues}
             validationSchema={bookingValidate}
-            onSubmit={values => {
+            onSubmit={(values, {resetForm}) => {
                 userInfo.user_id === 0 ? values.user_id = null : values.user_id = userInfo.user_id;
                 values.start_time = new Date(today.getFullYear(), today.getMonth(), Number(values.date), Math.round(Number(values.time) / 100), Number(values.time) % 100);
                 let { date, time, ...dataReq } = values;
                 // console.log(values);
                 // console.log(dataReq);
                 dispatch(createBooking(dataReq));
-
+                resetForm();
             }}
         >
             {({ errors, touched, values }) => (

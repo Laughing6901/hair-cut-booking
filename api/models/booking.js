@@ -26,6 +26,9 @@ module.exports = function (sequelize, DataTypes) {
       description: {
         type: Sequelize.STRING(255),
       },
+      preview: {
+        type: Sequelize.STRING(255),
+      },
       status: {
         allowNull: false,
         type: Sequelize.INTEGER(2),

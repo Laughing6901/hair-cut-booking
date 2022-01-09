@@ -18,7 +18,7 @@ export const Blog: React.FC = () => {
         description: '',
         image_blogs: '',
         content: '',
-        comment: [],
+        comments: [],
     }
     const updateBlogState = (params: blogInfoRequest) => {
         console.log(params);

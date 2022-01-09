@@ -1,6 +1,7 @@
 import React from "react";
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from "../../app/store";
+import { pageApi } from "../../api/page-api";
 
 export interface userInfo {
     user_id: number,
@@ -13,11 +14,13 @@ export interface userInfo {
 
 export interface userState {
     state: 'idle' | 'failed' | 'pending',
-    userInfo: userInfo
+    userInfo: userInfo,
+    listUser: userInfo[],
 }
 
 const initialState:userState = {
     state: 'idle',
+    listUser: [],
     userInfo: {
         user_id: 0,
         fullname: '',
@@ -28,6 +31,19 @@ const initialState:userState = {
     }
 }
 
+export const getAllUser =createAsyncThunk(
+    'user/getAllUser', async(req, thunkApi) => {
+        const response: any = await pageApi.getUser();
+        console.log(response);
+        if (response.statusCode >300) {
+            return thunkApi.rejectWithValue(response.message);
+        }
+        // thunkApi.dispatch(setAccount(response.Account));
+      // The value we return becomes the `fulfilled` action payload
+      return response;
+    }
+)
+
 export const userInfoSlice = createSlice({
     name: 'user',
     initialState,
@@ -35,6 +51,20 @@ export const userInfoSlice = createSlice({
         setAccount: (state, action: PayloadAction<any>) => {
             state.userInfo = action.payload;
         }
+    },
+    extraReducers: (builder) => {
+        builder
+        .addCase(getAllUser.pending, (state) => {
+            state.state ='pending';
+        })
+        .addCase(getAllUser.rejected, (state, action: PayloadAction<any>) => {
+        state.state ='failed';
+        })
+        .addCase(getAllUser.fulfilled, (state, action: PayloadAction<any>) => {
+            state.state = 'idle';
+            //get token from data response from server
+            state.listUser = action.payload.data.rows;
+        })
     }
 })
 

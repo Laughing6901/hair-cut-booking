@@ -45,7 +45,7 @@ export const BlogForm: React.FC<formFunc> = ({status}) => {
                                             <div className="form-group">
                                                 <label>Blog Image</label>
                                                 <input id="file" name="image_blogs" type= "file" className="form-control pb-1 pt-1"onChange={(event:any) => {
-                                                    setFieldValue("image", event.currentTarget.files[0]);
+                                                    setFieldValue("image_blogs", event.currentTarget.files[0]);
                                                 }}/>
                                             </div>
                                             <div className="form-group">

@@ -9,7 +9,7 @@ export interface blogInfoRequest {
     image_blogs?: any,
     description: string,
     content: string,
-    comment: []
+    comments: []
 }
 
 export interface blogInfoResponse extends blogInfoRequest {

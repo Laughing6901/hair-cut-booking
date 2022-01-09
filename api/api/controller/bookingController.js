@@ -98,6 +98,32 @@ exports.getById = (req, res) => {
     });
 };
 
+exports.getUserBooking = (req, res) => {
+  serviceBooking
+  .getByUserId(req.params.id)
+  .then((booking) => {
+    if (booking === null) {
+      res.status(200).json({
+        message: messageConstants.BOOKING_FOUND,
+      });
+    } else {
+      res.status(404).json({
+        success: true,
+        message: messageConstants.BOOKING_NOT_FOUND,
+        booking: booking,
+      });
+    }
+  })
+  .catch((err) => {
+    res.send({
+      error: {
+        status: err.status || 500,
+        message: err.message,
+      },
+    });
+  });
+};
+
 //create
 exports.create = (req, res, next) => {
   try {

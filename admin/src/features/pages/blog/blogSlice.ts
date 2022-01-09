@@ -12,7 +12,7 @@ const initialState:blogState = {
         name: '',
         description: '',
         content: '',
-        comment: []
+        comments: []
     }
 }
 
@@ -33,7 +33,7 @@ export const updateBlog = createAsyncThunk(
     'blog/updateBlog', async(params:blogInfoRequest, thunkApi) => {
         const data = new FormData();
         data.append("name", params.name);
-        data.append("image_blog", params.image_blogs);
+        data.append("image_blogs", params.image_blogs);
         data.append("description", params.description);
         data.append("content", params.content);
         data.append("blog_id", `${params.blog_id}`);

@@ -43,10 +43,10 @@ export const PortfolioBody: React.FC = () => {
                     </div>
                 </div>
                 <div className="row portfolio-container">
-                    {listPortfolio.map((item) => {
+                    {listPortfolio.map((item, index) => {
                         return (
                             <div 
-                                key={item.category.cate_id} 
+                                key={index} 
                                 className={`
                                     col-lg-4 col-md-6 col-sm-12 portfolio-item 
                                     ${listArray[item.category.cate_id-1]} 
@@ -63,48 +63,6 @@ export const PortfolioBody: React.FC = () => {
                             </div>
                         )
                     })}
-                    <div className="col-lg-4 col-md-6 col-sm-12 portfolio-item first">
-                        <div className="portfolio-wrap">
-                            <a href="img/portfolio-1.jpg" data-lightbox="portfolio">
-                                <img src="img/portfolio-1.jpg" alt="Portfolio Image" />
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12 portfolio-item second">
-                        <div className="portfolio-wrap">
-                            <a href="img/portfolio-2.jpg" data-lightbox="portfolio">
-                                <img src="img/portfolio-2.jpg" alt="Portfolio Image" />
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12 portfolio-item third">
-                        <div className="portfolio-wrap">
-                            <a href="img/portfolio-3.jpg" data-lightbox="portfolio">
-                                <img src="img/portfolio-3.jpg" alt="Portfolio Image" />
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12 portfolio-item first">
-                        <div className="portfolio-wrap">
-                            <a href="img/portfolio-4.jpg" data-lightbox="portfolio">
-                                <img src="img/portfolio-4.jpg" alt="Portfolio Image" />
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12 portfolio-item second">
-                        <div className="portfolio-wrap">
-                            <a href="img/portfolio-5.jpg" data-lightbox="portfolio">
-                                <img src="img/portfolio-5.jpg" alt="Portfolio Image" />
-                            </a>
-                        </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6 col-sm-12 portfolio-item third">
-                        <div className="portfolio-wrap">
-                            <a href="img/portfolio-6.jpg" data-lightbox="portfolio">
-                                <img src="img/portfolio-6.jpg" alt="Portfolio Image" />
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

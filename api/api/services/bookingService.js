@@ -37,6 +37,10 @@ exports.getByid = async (id) => {
     return models.booking.findOne({where: {booking_id: id}});
 };
 
+exports.getByUserId = async (id) => {
+    return models.booking.findAll({where: {user_id: id}});
+};
+
 
 //create
 exports.create = async (booking) => {

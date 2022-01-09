@@ -66,7 +66,7 @@ exports.getallpaging = function (searchViewModel) {
    
 //  Login
 exports.login = async (account)=>{
-   let user = await models.users.findOne({where:{username:account.username}});
+   let user = await models.users.findOne({where:{username:account.username, deleted: 0}});
       if(user !== null){
          const fullname = user.fullname;
          const id = user.user_id;

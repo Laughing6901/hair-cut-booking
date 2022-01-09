@@ -88,9 +88,9 @@ exports.create = (req, res, next) => {
     const comment = {
       user_id: req.body.user_id,
       content: req.body.content,
-      delete: req.body.delete,
-      end_time: req.body.end_time,
-      created_by: req.body.created_by,
+      created_date: Date(Date.now()),
+      updated_date: Date(Date.now()),
+      blog_id: req.body.blog_id,
       status: 1,
       deleted: 0,
     };

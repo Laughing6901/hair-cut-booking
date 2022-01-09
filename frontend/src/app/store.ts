@@ -9,6 +9,8 @@ import barberReducer from '../features/page/barber/barberSlice';
 import portfolioReducer from '../features/page/gallery/portfolioSlice';
 import registerReducer from '../features/auth/register/registerSlice';
 import authLayoutReducer from '../features/auth/layoutSlice';
+import blogReducer from '../features/page/blog/blogSlice';
+import commentReducer from '../features/page/blog/comment/commentSlice';
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +24,8 @@ export const store = configureStore({
     portfolioState: portfolioReducer,
     registerState: registerReducer,
     authLayoutState: authLayoutReducer,
+    blogState: blogReducer,
+    commentState: commentReducer,
   },
 });
 

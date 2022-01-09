@@ -89,7 +89,6 @@ exports.create = (req, res, next) => {
     const blogs = {
       name: req.body.name,
       description: req.body.description,
-      image_blog: req.body.image_blog,
       content: req.body.content,
       created_by: req.body.created_by,
       created_date: Date(Date.now()),
@@ -144,13 +143,15 @@ exports.update = (req, res, next) => {
       updated_date: Date(),
     };
     const file = req.file;
+    console.log(file);
     if(file !== undefined) {
       console.log(file);
       file.uploadDir = "/upload/uploads/";
       let newPath = file.uploadDir + file.originalname;
       console.log("log new path", newPath);
-      blogUpdate.image = newPath;
+      blogUpdate.image_blogs = newPath;
     }
+    console.log(blogUpdate);
     blogService
       .update(id, blogUpdate)
       .then((result) => {

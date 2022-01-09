@@ -5,6 +5,7 @@ import { selectLoginState } from '../../auth/login/loginSlice';
 import { Header } from "../header/header";
 import { BookingAtTime } from "./bookingView/bookingAtTime";
 import { BookingWeek } from "./bookingView/bookingWeek";
+import { BookingYear } from "./bookingView/bookingYear";
 import { RatingList } from "./chart/rating";
 import { YearChart } from "./chart/yearChart";
 import { DailySale } from "./sale/dailySale";
@@ -29,6 +30,7 @@ export const Home:React.FC = () => {
                                     <YearChart />
                                     <RatingList />
                                     <BookingWeek />
+                                    <BookingYear />
                                 </div>
                             </div>
                         </div>
